@@ -10,7 +10,15 @@
                 </h4>
             </div>
             <div class="card-body p-4">
-                <form>
+                @if ($errors->any())
+                    <div id="alert-error" class="alert alert-danger d-flex align-items-center" role="alert">
+                        <i class="bi bi-exclamation-circle-fill me-2"></i>
+                        <div>{{ $errors->first() }}</div>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('proses') }}">
+                    @csrf
 
                     <div class="mb-3">
                         <label for="username" class="form-label fw-semibold">Username</label>

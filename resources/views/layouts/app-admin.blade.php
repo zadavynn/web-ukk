@@ -19,7 +19,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand ps-2" href="{{ route('admin') }}">Admin Dashboard</a>
-            <a class="btn btn-outline-danger" href="#"><i
+            <a class="btn btn-outline-danger" href="{{ route('logout') }}"><i
                     class="bi bi-box-arrow-right me-2"></i>Keluar</a>
         </div>
     </nav>

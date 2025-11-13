@@ -7,9 +7,16 @@ use App\Http\Controllers\CatatanController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\PanitiaController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\AuthController;
+
+// halaman login admin
+Route::get('/', [AuthController::class, 'index'])->name('user');
+Route::get('/auth', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginProses'])->name('proses');
 
 // dashboard admin
-Route::get('/', [AdminController::class, 'index'])->name('admin');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/admin/logout', [AdminController::class, 'logout'])->name('logout');
 
 // halaman absensi admin
 Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi');
