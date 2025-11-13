@@ -10,4 +10,12 @@ class AbsensiController extends Controller
     {
         return view('admin.absensi.index');
     }
+    public function create()
+    {
+        return view('admin.absensi.create');
+    }
+    public function edit()
+    {
+        return view('admin.absensi.edit');
+    }
 }

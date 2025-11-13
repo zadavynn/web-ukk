@@ -10,4 +10,12 @@ class KegiatanController extends Controller
     {
         return view('admin.kegiatan.index');
     }
+    public function create()
+    {
+        return view('admin.kegiatan.create');
+    }
+    public function edit()
+    {
+        return view('admin.kegiatan.edit');
+    }
 }

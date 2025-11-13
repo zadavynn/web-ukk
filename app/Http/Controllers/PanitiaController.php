@@ -10,4 +10,12 @@ class PanitiaController extends Controller
     {
         return view('admin.panitia.index');
     }
+    public function create()
+    {
+        return view('admin.panitia.create');
+    }
+    public function edit()
+    {
+        return view('admin.panitia.edit');
+    }
 }

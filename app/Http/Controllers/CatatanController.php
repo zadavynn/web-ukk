@@ -10,4 +10,12 @@ class CatatanController extends Controller
     {
         return view('admin.catatan.index');
     }
+    public function create()
+    {
+        return view('admin.catatan.create');
+    }
+    public function edit()
+    {
+        return view('admin.catatan.edit');
+    }
 }

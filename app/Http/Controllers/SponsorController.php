@@ -10,4 +10,12 @@ class SponsorController extends Controller
     {
         return view('admin.sponsor.index');
     }
+    public function create()
+    {
+        return view('admin.sponsor.create');
+    }
+    public function edit()
+    {
+        return view('admin.sponsor.edit');
+    }
 }

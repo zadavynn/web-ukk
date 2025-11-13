@@ -1,3 +1,7 @@
-<div>
-    <!-- Knowing is not enough; we must apply. Being willing is not enough; we must do. - Leonardo da Vinci -->
-</div>
+@extends('layouts.app-admin')
+@section('title', 'Membuat Kegiatan')
+@section('content')
+    <h1>Buat Kegiatan Baru</h1>
+    <p>Selamat datang di halaman untuk membuat Kegiatan baru di SMK Syafi'i Akrom.</p>
+    <a href="{{ route('kegiatan') }}" class="btn btn-outline-secondary">Kembali</a>
+@endsection
