@@ -1,3 +1,6 @@
-<div>
-    <!-- Life is available only in the present moment. - Thich Nhat Hanh -->
-</div>
+@extends('layouts.app-admin')
+@section('title', 'Catatan Admin')
+@section('content')
+    <h1>Catatan Admin</h1>
+    <p>Selamat datang di halaman Catatan Admin SMK Syafi'i Akrom.</p>
+@endsection

@@ -1,3 +1,49 @@
-<div>
-    <!-- I have not failed. I've just found 10,000 ways that won't work. - Thomas Edison -->
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@yield('title')</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}" />
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar sticky-top bg-body-secondary ps-3">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-semibold" href="{{ route('user') }}">SMK Syafi'i Akrom</a>
+        </div>
+    </nav>
+
+    <main class="flex-grow-1">
+        <div class="container pt-4">
+            @yield('content')
+        </div>
+    </main>
+
+    <footer class="bg-secondary text-light pb-1 pt-3 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2025 Admin SMK Syafi'i Akrom. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script>
+        // Tunggu 3 detik, lalu hilangkan alert
+        setTimeout(() => {
+            const alert = document.getElementById('alert-error');
+            if (alert) {
+                alert.classList.add('fade'); // kasih efek transisi bootstrap
+                alert.classList.remove('show');
+                setTimeout(() => alert.remove(), 500); // hapus elemen setelah efek
+            }
+        }, 2000);
+        const sponsorCarousel = document.querySelector('#sponsorCarousel');
+        const carousel = new bootstrap.Carousel(sponsorCarousel, {
+            interval: 3000, // ganti setiap 3 detik
+            ride: 'carousel',
+            pause: false
+        });
+    </script>
+</body>

@@ -1,3 +1,6 @@
-<div>
-    <!-- It is not the man who has too little, but the man who craves more, that is poor. - Seneca -->
-</div>
+@extends('layouts.app-admin')
+@section('title', 'Panitia Admin')
+@section('content')
+    <h1>Panitia Admin</h1>
+    <p>Selamat datang di halaman Panitia Admin SMK Syafi'i Akrom.</p>
+@endsection
