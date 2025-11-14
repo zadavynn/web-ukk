@@ -40,31 +40,31 @@
                     </a>
                 </li>
                 <li class="list-group-item bg-dark">
-                    <a href="{{ route('kegiatan') }}" class="d-block text-white text-decoration-none p-2"><i
+                    <a href="{{ route('kegiatan.index') }}" class="d-block text-white text-decoration-none p-2"><i
                             class="bi bi-card-list me-2"></i>
                         Kegiatan
                     </a>
                 </li>
                 <li class="list-group-item bg-dark">
-                    <a href="{{ route('panitia') }}" class="d-block text-white text-decoration-none p-2"><i
+                    <a href="{{ route('panitia.index') }}" class="d-block text-white text-decoration-none p-2"><i
                             class="bi bi-person-badge me-2"></i>
                         Panitia
                     </a>
                 </li>
                 <li class="list-group-item bg-dark">
-                    <a href="{{ route('absensi') }}" class="d-block text-white text-decoration-none p-2"><i
+                    <a href="{{ route('absensi.index') }}" class="d-block text-white text-decoration-none p-2"><i
                             class="bi bi-person-lines-fill me-2"></i>
                         Absensi
                     </a>
                 </li>
                 <li class="list-group-item bg-dark">
-                    <a href="{{ route('sponsor') }}" class="d-block text-white text-decoration-none p-2"><i
+                    <a href="{{ route('sponsor.index') }}" class="d-block text-white text-decoration-none p-2"><i
                             class="bi bi-cash me-2"></i>
                         Sponsor
                     </a>
                 </li>
                 <li class="list-group-item bg-dark">
-                    <a href="{{ route('catatan') }}" class="d-block text-white text-decoration-none p-2"><i
+                    <a href="{{ route('catatan.index') }}" class="d-block text-white text-decoration-none p-2"><i
                             class="bi bi-clipboard me-2"></i>
                         Catatan
                     </a>

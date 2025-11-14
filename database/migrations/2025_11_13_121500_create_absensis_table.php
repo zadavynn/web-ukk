@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('absensis', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('kegiatan_id')->constrained('kegiatans')->onDelete('cascade');
+            $table->enum('kelas', ['X RPL', 'X TKJ', 'XI RPL', 'XI TKJ', 'XII RPL', 'XII TKJ']);
+            $table->integer('jumlah_hadir');
             $table->timestamps();
         });
     }

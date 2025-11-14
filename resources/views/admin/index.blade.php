@@ -4,53 +4,53 @@
     <!-- Header Dashboard -->
     <div class="text-center mb-3 mt-3">
         <h1 class="fw-semibold text-capitalize">Selamat Datang Admin</h1>
-        <p class="text-muted">Kelola kegiatan, panitia, peserta, sponsor, dan catatan dengan mudah.</p>
+        <p class="text-muted">Kelola kegiatan, panitia, absensi, sponsor, dan catatan dengan mudah.</p>
     </div>
 
     <!-- Statistik ringkas -->
     <div class="row g-3 mb-4">
         <!-- Total Kegiatan -->
         <div class="col-md">
-            <a href="{{ route('kegiatan') }}"
+            <a href="{{ route('kegiatan.index') }}"
                 class="btn btn-outline-primary w-100 text-center text-decoration-none py-3 shadow-sm">
                 <i class="bi bi-calendar-event fs-2 mb-2 d-block"></i>
-                <h5 class="card-title mb-1">5</h5>
+                <h5 class="card-title mb-1">{{ $totalKegiatan }}</h5>
                 <p class="mb-0">Total Kegiatan</p>
             </a>
         </div>
         <!-- Total Panitia -->
         <div class="col-md">
-            <a href="{{ route('panitia') }}"
+            <a href="{{ route('panitia.index') }}"
                 class="btn btn-outline-success w-100 text-center text-decoration-none py-3 shadow-sm">
                 <i class="bi bi-people fs-2 mb-2 d-block"></i>
-                <h5 class="card-title mb-1">12</h5>
+                <h5 class="card-title mb-1">{{ $totalPanitia }}</h5>
                 <p class="mb-0">Total Panitia</p>
             </a>
         </div>
-        <!-- Total Peserta -->
+        <!-- Total Absensi -->
         <div class="col-md">
-            <a href="{{ route('absensi') }}"
+            <a href="{{ route('absensi.index') }}"
                 class="btn btn-outline-warning w-100 text-center text-decoration-none py-3 shadow-sm">
                 <i class="bi bi-person-badge fs-2 mb-2 d-block"></i>
-                <h5 class="card-title mb-1">54</h5>
-                <p class="mb-0">Total Peserta</p>
+                <h5 class="card-title mb-1">{{ $totalPeserta }}</h5>
+                <p class="mb-0">Total Absensi</p>
             </a>
         </div>
         <!-- Total Sponsor -->
         <div class="col-md">
-            <a href="{{ route('sponsor') }}"
+            <a href="{{ route('sponsor.index') }}"
                 class="btn btn-outline-danger w-100 text-center text-decoration-none py-3 shadow-sm">
                 <i class="bi bi-cash-coin fs-2 mb-2 d-block"></i>
-                <h5 class="card-title mb-1">5</h5>
+                <h5 class="card-title mb-1">{{ $totalSponsor }}</h5>
                 <p class="mb-0">Total Sponsor</p>
             </a>
         </div>
         <!-- Catatan -->
         <div class="col-md">
-            <a href="{{ route('catatan') }}"
+            <a href="{{ route('catatan.index') }}"
                 class="btn btn-outline-info w-100 text-center text-decoration-none py-3 shadow-sm">
                 <i class="bi bi-journal-text fs-2 mb-2 d-block"></i>
-                <h5 class="card-title mb-1">3</h5>
+                <h5 class="card-title mb-1">{{ $totalCatatan }}</h5>
                 <p class="mb-0">Catatan</p>
             </a>
         </div>
@@ -69,46 +69,40 @@
                             <th class="col-3">KEGIATAN</th>
                             <th class="col-2">STATUS</th>
                             <th class="col-2">TANGGAL</th>
-                            <th class="col-2">TEMPAT</th>
+                            <th class="col-2">DESKRIPSI</th>
                             <th class="col-1">PANITIA</th>
-                            <th class="col-1">PESERTA</th>
+                            <th class="col-1">HADIR</th>
                             <th class="col-1">SPONSOR</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Seminar Motivasi</td>
-                            <td><span class="badge bg-primary">Berlangsung</span></td>
-                            <td>2025-06-25</td>
-                            <td>Indor</td>
-                            <td>15</td>
-                            <td>15</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Bazar Sekolah</td>
-                            <td><span class="badge bg-info">Akan datang</span></td>
-                            <td>2025-07-10</td>
-                            <td>Lapangan</td>
-                            <td>5</td>
-                            <td>10</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Donor Darah</td>
-                            <td><span class="badge bg-success">Selesai</span></td>
-                            <td>2025-05-15</td>
-                            <td>Aula</td>
-                            <td>15</td>
-                            <td>15</td>
-                            <td>1</td>
-                        </tr>
+                        @forelse($latestKegiatans as $kegiatan)
+                            <tr>
+                                <td>{{ $kegiatan->nama }}</td>
+                                <td>
+                                    @if ($kegiatan->status == 'selesai')
+                                        <span class="badge bg-success">Selesai</span>
+                                    @else
+                                        <span class="badge bg-primary">Berlangsung</span>
+                                    @endif
+                                </td>
+                                <td>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</td>
+                                <td>{{ Str::limit($kegiatan->deskripsi, 20) }}</td>
+                                <td>{{ $kegiatan->panitias->count() }}</td>
+                                <td>{{ $kegiatan->absensis->sum('jumlah_hadir') }}</td>
+                                <td>{{ $kegiatan->sponsors->count() }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-muted">Belum ada kegiatan</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="card-footer text-end">
-            <a href="{{ route('kegiatan') }}" class="btn btn-outline-primary btn-sm">Lihat Semua</a>
+            <a href="{{ route('kegiatan.index') }}" class="btn btn-outline-primary btn-sm">Lihat Semua</a>
         </div>
     </div>
 @endsection
