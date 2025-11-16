@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('kegiatans', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->text('deskripsi');
             $table->date('tanggal');
+            $table->string('lokasi');
             $table->enum('status', ['belum_selesai', 'selesai'])->default('belum_selesai');
             $table->timestamps();
         });

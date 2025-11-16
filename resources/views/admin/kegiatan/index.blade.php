@@ -17,6 +17,7 @@
                     <tr>
                         <th>Nama</th>
                         <th>Tanggal</th>
+                        <th>Lokasi</th>
                         <th>Status</th>
                         <th>Panitia</th>
                         <th>Sponsor</th>
@@ -27,7 +28,8 @@
                     @foreach ($kegiatans as $kegiatan)
                         <tr>
                             <td>{{ $kegiatan->nama }}</td>
-                            <td>{{ $kegiatan->tanggal->format('d/m/Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</td>
+                            <td>{{ $kegiatan->lokasi }}</td>
                             <td>
                                 @if ($kegiatan->status == 'selesai')
                                     <span class="badge bg-success">Selesai</span>
@@ -35,8 +37,8 @@
                                     <span class="badge bg-warning">Belum Selesai</span>
                                 @endif
                             </td>
-                            <td>{{ $kegiatan->panitias->pluck('nama')->join(', ') }}</td>
-                            <td>{{ $kegiatan->sponsors->pluck('nama')->join(', ') }}</td>
+                            <td>{{ implode(', ', $kegiatan->panitias) }}</td>
+                            <td>{{ implode(', ', $kegiatan->sponsors) }}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" data-bs-toggle="modal"
                                     data-bs-target="#detailModal{{ $kegiatan->id }}">Detail</button>
@@ -74,11 +76,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <p><strong>Deskripsi:</strong> {{ $kegiatan->deskripsi }}</p>
-                        <p><strong>Tanggal:</strong> {{ $kegiatan->tanggal->format('d/m/Y') }}</p>
+                        <p><strong>Tanggal:</strong> {{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</p>
+                        <p><strong>Lokasi:</strong> {{ $kegiatan->lokasi }}</p>
                         <p><strong>Status:</strong> {{ $kegiatan->status == 'selesai' ? 'Selesai' : 'Belum Selesai' }}</p>
-                        <p><strong>Panitia:</strong> {{ $kegiatan->panitias->pluck('nama')->join(', ') }}</p>
-                        <p><strong>Sponsor:</strong> {{ $kegiatan->sponsors->pluck('nama')->join(', ') }}</p>
+                        <p><strong>Panitia:</strong> {{ implode(', ', $kegiatan->panitias) }}</p>
+                        <p><strong>Sponsor:</strong> {{ implode(', ', $kegiatan->sponsors) }}</p>
                     </div>
                 </div>
             </div>

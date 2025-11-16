@@ -23,21 +23,27 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="kelas" class="form-label">Kelas</label>
-                    <select class="form-control" id="kelas" name="kelas" required>
-                        <option value="">Pilih Kelas</option>
-                        <option value="X RPL" {{ $absensi->kelas == 'X RPL' ? 'selected' : '' }}>X RPL</option>
-                        <option value="X TKJ" {{ $absensi->kelas == 'X TKJ' ? 'selected' : '' }}>X TKJ</option>
-                        <option value="XI RPL" {{ $absensi->kelas == 'XI RPL' ? 'selected' : '' }}>XI RPL</option>
-                        <option value="XI TKJ" {{ $absensi->kelas == 'XI TKJ' ? 'selected' : '' }}>XI TKJ</option>
-                        <option value="XII RPL" {{ $absensi->kelas == 'XII RPL' ? 'selected' : '' }}>XII RPL</option>
-                        <option value="XII TKJ" {{ $absensi->kelas == 'XII TKJ' ? 'selected' : '' }}>XII TKJ</option>
+                    <label for="panitia_id" class="form-label">Panitia</label>
+                    <select class="form-control" id="panitia_id" name="panitia_id" required>
+                        <option value="">Pilih Panitia</option>
+                        @foreach ($panitias as $panitia)
+                            <option value="{{ $panitia->id }}"
+                                {{ $absensi->panitia_id == $panitia->id ? 'selected' : '' }}>{{ $panitia->nama }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="jumlah_hadir" class="form-label">Jumlah Hadir</label>
-                    <input type="number" class="form-control" id="jumlah_hadir" name="jumlah_hadir"
-                        value="{{ $absensi->jumlah_hadir }}" required min="0">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-control" id="status" name="status" required>
+                        <option value="hadir" {{ $absensi->status == 'hadir' ? 'selected' : '' }}>Hadir</option>
+                        <option value="tidak_hadir" {{ $absensi->status == 'tidak_hadir' ? 'selected' : '' }}>Tidak Hadir
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="keterangan" class="form-label">Keterangan</label>
+                    <textarea class="form-control" id="keterangan" name="keterangan" rows="3">{{ $absensi->keterangan }}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>

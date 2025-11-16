@@ -1,181 +1,159 @@
 @extends('layouts.app-user')
-@section('title', 'User')
+@section('title', 'SMK Syafi\'i Akrom - Portal Informasi Kegiatan')
+
 @section('content')
-    <div id="heroCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
-        <div class="carousel-inner rounded-3 shadow-sm">
-            <div class="carousel-item active text-center bg-secondary-subtle py-5">
-                <h2 class="fw-bold">Menampilkan Informasi Kegiatan Sekolah</h2>
-                <p class="text-muted">Eksplor berbagai kegiatan, panitia, sponsor, dan absensi siswa.</p>
+
+    <!-- HERO -->
+    <div class="bg-primary text-white py-5 mb-5 rounded shadow text-center">
+        <h1 class="display-5 fw-bold">Selamat Datang di Portal Kegiatan</h1>
+        <p class="lead">SMK Syafi'i Akrom - Inovasi untuk masa depan</p>
+
+        <div class="row g-4 justify-content-center mt-4">
+            <div class="col-auto text-center">
+                <i class="bi bi-calendar-event fs-1"></i>
+                <p class="mt-2 mb-0">Kegiatan Terjadwal</p>
             </div>
-            <div class="carousel-item text-center bg-secondary-subtle py-5">
-                <h2 class="fw-bold">Ikuti Berbagai Acara Seru di Sekolah</h2>
-                <p class="text-muted">Tingkatkan pengalaman belajar dengan berpartisipasi aktif.</p>
+            <div class="col-auto text-center">
+                <i class="bi bi-people fs-1"></i>
+                <p class="mt-2 mb-0">Panitia Profesional</p>
             </div>
-            <div class="carousel-item text-center bg-secondary-subtle py-5">
-                <h2 class="fw-bold">Pantau Kehadiran dan Catatan Kegiatan</h2>
-                <p class="text-muted">Semua informasi sekolah dalam satu tempat.</p>
+            <div class="col-auto text-center">
+                <i class="bi bi-hand-thumbs-up fs-1"></i>
+                <p class="mt-2 mb-0">Sponsor Terpercaya</p>
             </div>
         </div>
-        <button class="carousel-control-prev" title="back" type="button" data-bs-target="#heroCarousel"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" title="next" type="button" data-bs-target="#heroCarousel"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
     </div>
 
-    <section id="activities" class="mb-5">
-        <div class="text-center mb-3">
-            <h2 class="h4 mb-1">Kegiatan</h2>
-            <p class="text-muted small">Program dan acara untuk memperkaya kehidupan siswa</p>
+    <!-- ALERT -->
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show mb-4">
+            <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show mb-4">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li><i class="bi bi-exclamation-circle me-2"></i>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
+    <!-- KEGIATAN -->
+    <section class="mb-5">
+        <div class="text-center mb-4">
+            <h2 class="h4 text-primary">
+                <i class="bi bi-calendar-event me-2"></i>Kegiatan Mendatang
+            </h2>
+            <p class="text-muted">Ikuti dan berpartisipasi dalam kegiatan sekolah</p>
         </div>
 
-        <div class="row g-3">
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body d-flex gap-3 align-items-start">
-                        <i class="bi bi-balloon fs-3 text-primary"></i>
-                        <div>
-                            <h6 class="mb-1">Turnamen Basket</h6>
-                            <p class="text-muted small mb-2">Kompetisi basket antar kelas tahunan</p>
-                            <div class="small text-muted"><i class="bi bi-calendar-event me-1"></i> 20 Mar 2025 • <i
-                                    class="bi bi-geo-alt ms-2 me-1"></i>Gedung Olahraga</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        @if ($kegiatans->count() > 0)
+            <div class="row g-4">
+                @foreach ($kegiatans as $kegiatan)
+                    <div class="col-md-6 col-xl-4">
+                        <div class="card h-100 shadow border-0">
 
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body d-flex gap-3 align-items-start">
-                        <i class="bi bi-easel fs-3 text-primary"></i>
-                        <div>
-                            <h6 class="mb-1">Pertunjukan Drama</h6>
-                            <p class="text-muted small mb-2">Produksi teater kreatif oleh siswa</p>
-                            <div class="small text-muted"><i class="bi bi-calendar-event me-1"></i> 05 Apr 2025 • <i
-                                    class="bi bi-geo-alt ms-2 me-1"></i>Aula</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <div class="card-body">
+                                <h5 class="fw-bold">{{ $kegiatan->nama }}</h5>
+                                <small class="text-muted d-block mb-2">
+                                    <i class="bi bi-geo-alt me-1"></i>{{ $kegiatan->lokasi }}
+                                </small>
 
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body d-flex gap-3 align-items-start">
-                        <i class="bi bi-flask-florence fs-3 text-primary"></i>
-                        <div>
-                            <h6 class="mb-1">Pameran Sains</h6>
-                            <p class="text-muted small mb-2">Pameran proyek inovatif dari para siswa</p>
-                            <div class="small text-muted"><i class="bi bi-calendar-event me-1"></i> 12 Mei 2025 • <i
-                                    class="bi bi-geo-alt ms-2 me-1"></i>Hall</div>
+                                <p class="mb-2">
+                                    <i class="bi bi-clock me-1"></i>
+                                    <strong>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d M Y') }}</strong>
+                                </p>
+
+                                @if ($kegiatan->status)
+                                    <span class="badge bg-{{ $kegiatan->status == 'aktif' ? 'success' : 'warning' }}">
+                                        {{ ucfirst($kegiatan->status) }}
+                                    </span>
+                                @endif
+
+                                @if ($kegiatan->panitias)
+                                    <div class="mt-3">
+                                        <small class="text-muted">Panitia:</small>
+                                        <div class="d-flex gap-1 flex-wrap">
+                                            @foreach (array_slice($kegiatan->panitias, 0, 3) as $p)
+                                                <span class="badge bg-light text-dark">{{ $p }}</span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if ($kegiatan->sponsors)
+                                    <div class="mt-3">
+                                        <small class="text-muted">Sponsor:</small>
+                                        <div class="d-flex gap-1 flex-wrap">
+                                            @foreach (array_slice($kegiatan->sponsors, 0, 2) as $s)
+                                                <span class="badge bg-success text-white">{{ $s }}</span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
-        </div>
+        @else
+            <div class="text-center py-5">
+                <i class="bi bi-calendar-x fs-1 text-muted"></i>
+                <p class="text-muted mt-3">Belum ada kegiatan</p>
+            </div>
+        @endif
     </section>
-    <div class="row g-3 mb-5">
-        <!-- Kolom Panitia -->
-        <div id="committees" class="col-lg-6">
-            <div class="card h-100">
+
+    <!-- PANITIA & SPONSOR -->
+    <div class="row g-4 mb-5">
+
+        <div class="col-lg-6">
+            <div class="card shadow border-0">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="bi bi-people me-2"></i>Tim Panitia</h5>
+                </div>
                 <div class="card-body">
-                    <h5 class="mb-2">Panitia</h5>
-                    <p class="text-muted small mb-3">
-                        Panitia yang bertanggung jawab pada kegiatan dan pengembangan sekolah.
-                    </p>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Penanggung <span class="badge bg-secondary">Pak Sugeng</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Ketua <span class="badge bg-secondary">Ahmad Fauzi</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Wakil Ketua <span class="badge bg-secondary">Lita Aulia</span>
-                        </li>
-                    </ul>
+                    @if ($panitias->count() > 0)
+                        @foreach ($panitias as $p)
+                            <div class="p-3 bg-light rounded mb-3">
+                                <h6 class="fw-bold mb-1">{{ $p->nama }}</h6>
+                                <small class="text-muted d-block"><i class="bi bi-envelope me-1"></i>{{ $p->email }}</small>
+                                <small class="text-muted"><i class="bi bi-telephone me-1"></i>{{ $p->telepon }}</small>
+                            </div>
+                        @endforeach
+                    @else
+                        <p class="text-center text-muted">Belum ada data panitia</p>
+                    @endif
                 </div>
             </div>
         </div>
 
-        <!-- Kolom Sponsor -->
-        <div id="sponsors" class="col-lg-6">
-            <div class="card h-100 text-center">
+        <div class="col-lg-6">
+            <div class="card shadow border-0">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="bi bi-hand-thumbs-up me-2"></i>Mitra Sponsor</h5>
+                </div>
                 <div class="card-body">
-                    <h5 class="mb-2">Sponsor</h5>
-                    <p class="text-muted small mb-3">Organisasi yang mendukung kegiatan sekolah</p>
-
-                    <div id="sponsorCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <!-- Slide 1 -->
-                            <div class="carousel-item active">
-                                <div class="d-flex justify-content-center gap-3 flex-wrap">
-                                    <div class="text-center px-3">
-                                        <i class="bi bi-building fs-2 text-muted"></i>
-                                        <div class="small mt-2">Perusahaan Lokal</div>
-                                    </div>
-                                    <div class="text-center px-3">
-                                        <i class="bi bi-bank fs-2 text-muted"></i>
-                                        <div class="small mt-2">Yayasan Pendidikan</div>
-                                    </div>
-                                    <div class="text-center px-3">
-                                        <i class="bi bi-people fs-2 text-muted"></i>
-                                        <div class="small mt-2">Mitra Komunitas</div>
-                                    </div>
-                                </div>
+                    @if ($sponsors->count() > 0)
+                        @foreach ($sponsors as $s)
+                            <div class="p-3 bg-light rounded mb-3">
+                                <h6 class="fw-bold text-success">{{ $s->nama_sponsor }}</h6>
+                                <small class="text-muted"><i class="bi bi-envelope me-1"></i>{{ $s->kontak_sponsor }}</small>
                             </div>
-
-                            <!-- Slide 2 -->
-                            <div class="carousel-item">
-                                <div class="d-flex justify-content-center gap-3 flex-wrap">
-                                    <div class="text-center px-3">
-                                        <i class="bi bi-shop fs-2 text-muted"></i>
-                                        <div class="small mt-2">Toko Buku Nusantara</div>
-                                    </div>
-                                    <div class="text-center px-3">
-                                        <i class="bi bi-lightning-charge fs-2 text-muted"></i>
-                                        <div class="small mt-2">Energi Hijau</div>
-                                    </div>
-                                    <div class="text-center px-3">
-                                        <i class="bi bi-heart fs-2 text-muted"></i>
-                                        <div class="small mt-2">Komunitas Peduli Anak</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Slide 3 -->
-                            <div class="carousel-item">
-                                <div class="d-flex justify-content-center gap-3 flex-wrap">
-                                    <div class="text-center px-3">
-                                        <i class="bi bi-mortarboard fs-2 text-muted"></i>
-                                        <div class="small mt-2">Beasiswa Cerah</div>
-                                    </div>
-                                    <div class="text-center px-3">
-                                        <i class="bi bi-tree fs-2 text-muted"></i>
-                                        <div class="small mt-2">Hijaukan Bumi</div>
-                                    </div>
-                                    <div class="text-center px-3">
-                                        <i class="bi bi-hospital fs-2 text-muted"></i>
-                                        <div class="small mt-2">Klinik Sehat</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Kontrol Carousel -->
-                        <button class="carousel-control-prev" type="button" data-bs-target="#sponsorCarousel"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#sponsorCarousel"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
-                    </div>
+                        @endforeach
+                    @else
+                        <p class="text-center text-muted">Belum ada data sponsor</p>
+                    @endif
                 </div>
             </div>
         </div>
+
     </div>
+
 @endsection

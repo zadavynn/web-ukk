@@ -34,7 +34,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="kegiatan_ids[]"
                                         value="{{ $kegiatan->id }}" id="kegiatan{{ $kegiatan->id }}"
-                                        {{ $panitia->kegiatans->contains($kegiatan->id) ? 'checked' : '' }}>
+                                        {{ in_array($kegiatan->id, $panitia->selected_kegiatans ?? []) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="kegiatan{{ $kegiatan->id }}">
                                         {{ $kegiatan->nama }}
                                     </label>

@@ -12,7 +12,7 @@
                 @csrf
                 <div class="mb-3">
                     <label for="kegiatan_id" class="form-label">Kegiatan</label>
-                    <select class="form-control" id="kegiatan_id" name="kegiatan_id" required>
+                    <select class="form-control" id="kegiatan_id" name="kegiatan_id" required onchange="filterPanitia()">
                         <option value="">Pilih Kegiatan</option>
                         @foreach ($kegiatans as $kegiatan)
                             <option value="{{ $kegiatan->id }}">{{ $kegiatan->nama }}</option>
@@ -20,24 +20,53 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="kelas" class="form-label">Kelas</label>
-                    <select class="form-control" id="kelas" name="kelas" required>
-                        <option value="">Pilih Kelas</option>
-                        <option value="X RPL">X RPL</option>
-                        <option value="X TKJ">X TKJ</option>
-                        <option value="XI RPL">XI RPL</option>
-                        <option value="XI TKJ">XI TKJ</option>
-                        <option value="XII RPL">XII RPL</option>
-                        <option value="XII TKJ">XII TKJ</option>
+                    <label for="panitia_id" class="form-label">Panitia</label>
+                    <select class="form-control" id="panitia_id" name="panitia_id" required>
+                        <option value="">Pilih Kegiatan terlebih dahulu</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="jumlah_hadir" class="form-label">Jumlah Hadir</label>
-                    <input type="number" class="form-control" id="jumlah_hadir" name="jumlah_hadir" required
-                        min="0">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-control" id="status" name="status" required>
+                        <option value="hadir">Hadir</option>
+                        <option value="tidak_hadir">Tidak Hadir</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="keterangan" class="form-label">Keterangan</label>
+                    <textarea class="form-control" id="keterangan" name="keterangan" rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         </div>
     </div>
+
+    <script>
+        function filterPanitia() {
+            const kegiatanId = document.getElementById('kegiatan_id').value;
+            const panitiaSelect = document.getElementById('panitia_id');
+
+            if (!kegiatanId) {
+                panitiaSelect.innerHTML = '<option value="">Pilih Kegiatan terlebih dahulu</option>';
+                return;
+            }
+
+            // Fetch panitia yang belum absen untuk kegiatan ini
+            fetch(`/admin/absensi/get-available-panitia/${kegiatanId}`)
+                .then(response => response.json())
+                .then(data => {
+                    panitiaSelect.innerHTML = '<option value="">Pilih Panitia</option>';
+                    data.forEach(panitia => {
+                        const option = document.createElement('option');
+                        option.value = panitia.id;
+                        option.textContent = panitia.nama;
+                        panitiaSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    panitiaSelect.innerHTML = '<option value="">Error loading panitia</option>';
+                });
+        }
+    </script>
 @endsection

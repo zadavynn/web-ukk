@@ -17,7 +17,6 @@
                     <tr>
                         <th>Nama</th>
                         <th>Kontak</th>
-                        <th>Jenis Sponsorship</th>
                         <th>Kegiatan</th>
                         <th>Aksi</th>
                     </tr>
@@ -25,10 +24,9 @@
                 <tbody>
                     @foreach ($sponsors as $sponsor)
                         <tr>
-                            <td>{{ $sponsor->nama }}</td>
-                            <td>{{ $sponsor->kontak }}</td>
-                            <td>{{ $sponsor->jenis_sponsorship }}</td>
-                            <td>{{ $sponsor->kegiatans->pluck('nama')->join(', ') }}</td>
+                            <td>{{ $sponsor->nama_sponsor }}</td>
+                            <td>{{ $sponsor->kontak_sponsor }}</td>
+                            <td>{{ implode(', ', $sponsor->kegiatans) }}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" data-bs-toggle="modal"
                                     data-bs-target="#detailModal{{ $sponsor->id }}">Detail</button>
@@ -52,14 +50,13 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Detail Sponsor: {{ $sponsor->nama }}</h5>
+                        <h5 class="modal-title">Detail Sponsor: {{ $sponsor->nama_sponsor }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <p><strong>Nama:</strong> {{ $sponsor->nama }}</p>
-                        <p><strong>Kontak:</strong> {{ $sponsor->kontak }}</p>
-                        <p><strong>Jenis Sponsorship:</strong> {{ $sponsor->jenis_sponsorship }}</p>
-                        <p><strong>Kegiatan:</strong> {{ $sponsor->kegiatans->pluck('nama')->join(', ') }}</p>
+                        <p><strong>Nama:</strong> {{ $sponsor->nama_sponsor }}</p>
+                        <p><strong>Kontak:</strong> {{ $sponsor->kontak_sponsor }}</p>
+                        <p><strong>Kegiatan:</strong> {{ implode(', ', $sponsor->kegiatans) }}</p>
                     </div>
                 </div>
             </div>

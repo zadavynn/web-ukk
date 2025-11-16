@@ -16,17 +16,15 @@
                 <thead>
                     <tr>
                         <th>Kegiatan</th>
-                        <th>Evaluasi</th>
-                        <th>Perbaikan</th>
+                        <th>Catatan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($catatans as $catatan)
                         <tr>
-                            <td>{{ $catatan->kegiatan->nama }}</td>
-                            <td>{{ Str::limit($catatan->evaluasi, 50) }}</td>
-                            <td>{{ Str::limit($catatan->perbaikan, 50) }}</td>
+                            <td>{{ $catatan->kegiatan_nama }}</td>
+                            <td>{{ Str::limit($catatan->catatan, 50) }}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" data-bs-toggle="modal"
                                     data-bs-target="#detailModal{{ $catatan->id }}">Detail</button>
@@ -50,13 +48,12 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Detail Catatan: {{ $catatan->kegiatan->nama }}</h5>
+                        <h5 class="modal-title">Detail Catatan: {{ $catatan->kegiatan_nama }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <p><strong>Kegiatan:</strong> {{ $catatan->kegiatan->nama }}</p>
-                        <p><strong>Evaluasi:</strong> {{ $catatan->evaluasi }}</p>
-                        <p><strong>Perbaikan:</strong> {{ $catatan->perbaikan }}</p>
+                        <p><strong>Kegiatan:</strong> {{ $catatan->kegiatan_nama }}</p>
+                        <p><strong>Catatan:</strong> {{ $catatan->catatan }}</p>
                     </div>
                 </div>
             </div>

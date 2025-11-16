@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kegiatan;
-use App\Models\Panitia;
-use App\Models\Sponsor;
-use App\Models\Absensi;
-use App\Models\Catatan;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -18,17 +14,33 @@ class AdminController extends Controller
         }
 
         // Get statistics
-        $totalKegiatan = Kegiatan::count();
-        $totalPanitia = Panitia::count();
-        $totalPeserta = Absensi::count();
-        $totalSponsor = Sponsor::count();
-        $totalCatatan = Catatan::count();
+        $totalKegiatan = DB::table('kegiatans')->count();
+        $totalPanitia = DB::table('panitias')->count();
+        $totalPeserta = DB::table('absensis')->count();
+        $totalSponsor = DB::table('sponsors')->count();
+        $totalCatatan = DB::table('catatans')->count();
 
-        // Get latest 3 kegiatan
-        $latestKegiatans = Kegiatan::with(['panitias', 'sponsors', 'absensis'])
+        // Get latest 3 kegiatan with relationships
+        $latestKegiatans = DB::table('kegiatans')
             ->orderBy('created_at', 'desc')
             ->take(3)
-            ->get();
+            ->get()
+            ->map(function ($kegiatan) {
+                $kegiatan->panitias = DB::table('kegiatan_panitia')
+                    ->join('panitias', 'kegiatan_panitia.panitia_id', '=', 'panitias.id')
+                    ->where('kegiatan_panitia.kegiatan_id', $kegiatan->id)
+                    ->pluck('panitias.nama')
+                    ->toArray();
+                $kegiatan->sponsors = DB::table('kegiatan_sponsor')
+                    ->join('sponsors', 'kegiatan_sponsor.sponsor_id', '=', 'sponsors.id')
+                    ->where('kegiatan_sponsor.kegiatan_id', $kegiatan->id)
+                    ->pluck('sponsors.nama_sponsor')
+                    ->toArray();
+                $kegiatan->absensis = DB::table('absensis')
+                    ->where('kegiatan_id', $kegiatan->id)
+                    ->count();
+                return $kegiatan;
+            });
 
         return view('admin.index', compact(
             'totalKegiatan',

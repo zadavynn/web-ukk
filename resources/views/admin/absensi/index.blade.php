@@ -16,17 +16,19 @@
                 <thead>
                     <tr>
                         <th>Kegiatan</th>
-                        <th>Kelas</th>
-                        <th>Jumlah Hadir</th>
+                        <th>Panitia</th>
+                        <th>Status</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($absensis as $absensi)
                         <tr>
-                            <td>{{ $absensi->kegiatan->nama }}</td>
-                            <td>{{ $absensi->kelas }}</td>
-                            <td>{{ $absensi->jumlah_hadir }}</td>
+                            <td>{{ $absensi->kegiatan_nama }}</td>
+                            <td>{{ $absensi->panitia_nama }}</td>
+                            <td>{{ $absensi->status == 'hadir' ? 'Hadir' : 'Tidak Hadir' }}</td>
+                            <td>{{ $absensi->keterangan }}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" data-bs-toggle="modal"
                                     data-bs-target="#detailModal{{ $absensi->id }}">Detail</button>
@@ -54,9 +56,10 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <p><strong>Kegiatan:</strong> {{ $absensi->kegiatan->nama }}</p>
-                        <p><strong>Kelas:</strong> {{ $absensi->kelas }}</p>
-                        <p><strong>Jumlah Hadir:</strong> {{ $absensi->jumlah_hadir }}</p>
+                        <p><strong>Kegiatan:</strong> {{ $absensi->kegiatan_nama }}</p>
+                        <p><strong>Panitia:</strong> {{ $absensi->panitia_nama }}</p>
+                        <p><strong>Status:</strong> {{ $absensi->status == 'hadir' ? 'Hadir' : 'Tidak Hadir' }}</p>
+                        <p><strong>Keterangan:</strong> {{ $absensi->keterangan }}</p>
                     </div>
                 </div>
             </div>

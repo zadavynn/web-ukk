@@ -11,16 +11,12 @@
             <form action="{{ route('sponsor.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <label for="nama" class="form-label">Nama Sponsor</label>
-                    <input type="text" class="form-control" id="nama" name="nama" required>
+                    <label for="nama_sponsor" class="form-label">Nama Sponsor</label>
+                    <input type="text" class="form-control" id="nama_sponsor" name="nama_sponsor" required>
                 </div>
                 <div class="mb-3">
-                    <label for="kontak" class="form-label">Kontak</label>
-                    <input type="text" class="form-control" id="kontak" name="kontak" required>
-                </div>
-                <div class="mb-3">
-                    <label for="jenis_sponsorship" class="form-label">Jenis Sponsorship</label>
-                    <input type="text" class="form-control" id="jenis_sponsorship" name="jenis_sponsorship" required>
+                    <label for="kontak_sponsor" class="form-label">Kontak</label>
+                    <input type="text" class="form-control" id="kontak_sponsor" name="kontak_sponsor" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Kegiatan Disponsori</label>

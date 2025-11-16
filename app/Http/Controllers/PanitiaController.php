@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Panitia;
-use App\Models\Kegiatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PanitiaController extends Controller
 {
     public function index()
     {
-        $panitias = Panitia::with('kegiatans')->get();
+        $panitias = DB::table('panitias')->get();
+        foreach ($panitias as $panitia) {
+            $panitia->kegiatans = DB::table('kegiatan_panitia')
+                ->join('kegiatans', 'kegiatan_panitia.kegiatan_id', '=', 'kegiatans.id')
+                ->where('kegiatan_panitia.panitia_id', $panitia->id)
+                ->pluck('kegiatans.nama')
+                ->toArray();
+        }
         return view('admin.panitia.index', compact('panitias'));
     }
 
     public function create()
     {
-        $kegiatans = Kegiatan::all();
+        $kegiatans = DB::table('kegiatans')->get();
         return view('admin.panitia.create', compact('kegiatans'));
     }
 
@@ -29,22 +35,46 @@ class PanitiaController extends Controller
             'kegiatan_ids' => 'array',
         ]);
 
-        $panitia = Panitia::create($request->only(['nama', 'email', 'telepon']));
-        $panitia->kegiatans()->sync($request->kegiatan_ids ?? []);
+        $id = DB::table('panitias')->insertGetId([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'telepon' => $request->telepon,
+        ]);
+
+        if ($request->kegiatan_ids) {
+            foreach ($request->kegiatan_ids as $kid) {
+                DB::table('kegiatan_panitia')->insert([
+                    'panitia_id' => $id,
+                    'kegiatan_id' => $kid,
+                ]);
+            }
+        }
 
         return redirect()->route('panitia.index')->with('success', 'Panitia berhasil dibuat.');
     }
 
     public function show($id)
     {
-        $panitia = Panitia::with('kegiatans')->findOrFail($id);
+        $panitia = DB::table('panitias')->where('id', $id)->first();
+        if (!$panitia) abort(404);
+        $panitia->kegiatans = DB::table('kegiatan_panitia')
+            ->join('kegiatans', 'kegiatan_panitia.kegiatan_id', '=', 'kegiatans.id')
+            ->where('kegiatan_panitia.panitia_id', $id)
+            ->pluck('kegiatans.nama')
+            ->toArray();
         return view('admin.panitia.show', compact('panitia'));
     }
 
     public function edit($id)
     {
-        $panitia = Panitia::with('kegiatans')->findOrFail($id);
-        $kegiatans = Kegiatan::all();
+        $panitia = DB::table('panitias')->where('id', $id)->first();
+        if (!$panitia) abort(404);
+        $kegiatans = DB::table('kegiatans')->get();
+        $selectedKegiatans = DB::table('kegiatan_panitia')
+            ->where('panitia_id', $id)
+            ->pluck('kegiatan_id')
+            ->toArray();
+        $panitia->selected_kegiatans = $selectedKegiatans;
         return view('admin.panitia.edit', compact('panitia', 'kegiatans'));
     }
 
@@ -57,17 +87,29 @@ class PanitiaController extends Controller
             'kegiatan_ids' => 'array',
         ]);
 
-        $panitia = Panitia::findOrFail($id);
-        $panitia->update($request->only(['nama', 'email', 'telepon']));
-        $panitia->kegiatans()->sync($request->kegiatan_ids ?? []);
+        DB::table('panitias')->where('id', $id)->update([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'telepon' => $request->telepon,
+        ]);
+
+        DB::table('kegiatan_panitia')->where('panitia_id', $id)->delete();
+        if ($request->kegiatan_ids) {
+            foreach ($request->kegiatan_ids as $kid) {
+                DB::table('kegiatan_panitia')->insert([
+                    'panitia_id' => $id,
+                    'kegiatan_id' => $kid,
+                ]);
+            }
+        }
 
         return redirect()->route('panitia.index')->with('success', 'Panitia berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
-        $panitia = Panitia::findOrFail($id);
-        $panitia->delete();
+        DB::table('kegiatan_panitia')->where('panitia_id', $id)->delete();
+        DB::table('panitias')->where('id', $id)->delete();
         return redirect()->route('panitia.index')->with('success', 'Panitia berhasil dihapus.');
     }
 }

@@ -12,18 +12,19 @@
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
-                    <label for="nama" class="form-label">Nama Kegiatan</label>
-                    <input type="text" class="form-control" id="nama" name="nama" value="{{ $kegiatan->nama }}"
-                        required>
+                    <label for="nama_kegiatan" class="form-label">Nama Kegiatan</label>
+                    <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan"
+                        value="{{ $kegiatan->nama }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="deskripsi" class="form-label">Deskripsi</label>
-                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required>{{ $kegiatan->deskripsi }}</textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="tanggal" class="form-label">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal"
+                    <label for="tanggal_kegiatan" class="form-label">Tanggal</label>
+                    <input type="date" class="form-control" id="tanggal_kegiatan" name="tanggal_kegiatan"
                         value="{{ $kegiatan->tanggal->format('Y-m-d') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lokasi_kegiatan" class="form-label">Lokasi</label>
+                    <input type="text" class="form-control" id="lokasi_kegiatan" name="lokasi_kegiatan"
+                        value="{{ $kegiatan->lokasi }}" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Panitia Terlibat</label>
@@ -33,7 +34,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="panitia_ids[]"
                                         value="{{ $panitia->id }}" id="panitia{{ $panitia->id }}"
-                                        {{ $kegiatan->panitias->contains($panitia->id) ? 'checked' : '' }}>
+                                        {{ in_array($panitia->id, $kegiatan->selected_panitias ?? []) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="panitia{{ $panitia->id }}">
                                         {{ $panitia->nama }}
                                     </label>
@@ -50,9 +51,9 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="sponsor_ids[]"
                                         value="{{ $sponsor->id }}" id="sponsor{{ $sponsor->id }}"
-                                        {{ $kegiatan->sponsors->contains($sponsor->id) ? 'checked' : '' }}>
+                                        {{ in_array($sponsor->id, $kegiatan->selected_sponsors ?? []) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="sponsor{{ $sponsor->id }}">
-                                        {{ $sponsor->nama }}
+                                        {{ $sponsor->nama_sponsor }}
                                     </label>
                                 </div>
                             </div>

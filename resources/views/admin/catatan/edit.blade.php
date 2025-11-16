@@ -23,12 +23,8 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="evaluasi" class="form-label">Evaluasi</label>
-                    <textarea class="form-control" id="evaluasi" name="evaluasi" rows="4" required>{{ $catatan->evaluasi }}</textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="perbaikan" class="form-label">Perbaikan</label>
-                    <textarea class="form-control" id="perbaikan" name="perbaikan" rows="4" required>{{ $catatan->perbaikan }}</textarea>
+                    <label for="catatan" class="form-label">Catatan</label>
+                    <textarea class="form-control" id="catatan" name="catatan" rows="4" required>{{ $catatan->catatan }}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>

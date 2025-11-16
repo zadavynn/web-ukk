@@ -89,6 +89,11 @@
     <script src="{{ asset('datatables/js/datatables.js') }}"></script>
     <script>
         $(document).ready(function() {
+            // Auto-hide alerts after 5 seconds
+            setTimeout(function() {
+                $('.alert').fadeOut('slow');
+            }, 3000);
+
             // Tabel pertama
             $("#example").DataTable({
                 responsive: true,

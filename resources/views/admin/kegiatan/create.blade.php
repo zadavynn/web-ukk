@@ -11,16 +11,16 @@
             <form action="{{ route('kegiatan.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <label for="nama" class="form-label">Nama Kegiatan</label>
-                    <input type="text" class="form-control" id="nama" name="nama" required>
+                    <label for="nama_kegiatan" class="form-label">Nama Kegiatan</label>
+                    <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan" required>
                 </div>
                 <div class="mb-3">
-                    <label for="deskripsi" class="form-label">Deskripsi</label>
-                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required></textarea>
+                    <label for="tanggal_kegiatan" class="form-label">Tanggal</label>
+                    <input type="date" class="form-control" id="tanggal_kegiatan" name="tanggal_kegiatan" required>
                 </div>
                 <div class="mb-3">
-                    <label for="tanggal" class="form-label">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                    <label for="lokasi_kegiatan" class="form-label">Lokasi</label>
+                    <input type="text" class="form-control" id="lokasi_kegiatan" name="lokasi_kegiatan" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Panitia Terlibat</label>
@@ -47,7 +47,7 @@
                                     <input class="form-check-input" type="checkbox" name="sponsor_ids[]"
                                         value="{{ $sponsor->id }}" id="sponsor{{ $sponsor->id }}">
                                     <label class="form-check-label" for="sponsor{{ $sponsor->id }}">
-                                        {{ $sponsor->nama }}
+                                        {{ $sponsor->nama_sponsor }}
                                     </label>
                                 </div>
                             </div>

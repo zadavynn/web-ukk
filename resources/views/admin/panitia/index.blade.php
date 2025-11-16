@@ -28,7 +28,7 @@
                             <td>{{ $panitia->nama }}</td>
                             <td>{{ $panitia->email }}</td>
                             <td>{{ $panitia->telepon }}</td>
-                            <td>{{ $panitia->kegiatans->pluck('nama')->join(', ') }}</td>
+                            <td>{{ implode(', ', $panitia->kegiatans) }}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" data-bs-toggle="modal"
                                     data-bs-target="#detailModal{{ $panitia->id }}">Detail</button>
@@ -59,7 +59,7 @@
                         <p><strong>Nama:</strong> {{ $panitia->nama }}</p>
                         <p><strong>Email:</strong> {{ $panitia->email }}</p>
                         <p><strong>Telepon:</strong> {{ $panitia->telepon }}</p>
-                        <p><strong>Kegiatan:</strong> {{ $panitia->kegiatans->pluck('nama')->join(', ') }}</p>
+                        <p><strong>Kegiatan:</strong> {{ implode(', ', $panitia->kegiatans) }}</p>
                     </div>
                 </div>
             </div>

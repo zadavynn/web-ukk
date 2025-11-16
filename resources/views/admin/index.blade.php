@@ -69,9 +69,9 @@
                             <th class="col-3">KEGIATAN</th>
                             <th class="col-2">STATUS</th>
                             <th class="col-2">TANGGAL</th>
-                            <th class="col-2">DESKRIPSI</th>
+                            <th class="col-2">LOKASI</th>
                             <th class="col-1">PANITIA</th>
-                            <th class="col-1">HADIR</th>
+                            <th class="col-1">ABSENSI</th>
                             <th class="col-1">SPONSOR</th>
                         </tr>
                     </thead>
@@ -87,10 +87,10 @@
                                     @endif
                                 </td>
                                 <td>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</td>
-                                <td>{{ Str::limit($kegiatan->deskripsi, 20) }}</td>
-                                <td>{{ $kegiatan->panitias->count() }}</td>
-                                <td>{{ $kegiatan->absensis->sum('jumlah_hadir') }}</td>
-                                <td>{{ $kegiatan->sponsors->count() }}</td>
+                                <td>{{ $kegiatan->lokasi ?? '-' }}</td>
+                                <td>{{ count($kegiatan->panitias) }}</td>
+                                <td>{{ $kegiatan->absensis }}</td>
+                                <td>{{ count($kegiatan->sponsors) }}</td>
                             </tr>
                         @empty
                             <tr>

@@ -10,6 +10,7 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+
     <nav class="navbar sticky-top bg-body-secondary ps-3">
         <div class="container-fluid">
             <a class="navbar-brand fw-semibold" href="{{ route('user') }}">SMK Syafi'i Akrom</a>
@@ -29,21 +30,27 @@
     </footer>
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+
     <script>
-        // Tunggu 3 detik, lalu hilangkan alert
+        // auto-hide alert
         setTimeout(() => {
             const alert = document.getElementById('alert-error');
             if (alert) {
-                alert.classList.add('fade'); // kasih efek transisi bootstrap
+                alert.classList.add('fade');
                 alert.classList.remove('show');
-                setTimeout(() => alert.remove(), 500); // hapus elemen setelah efek
+                setTimeout(() => alert.remove(), 500);
             }
         }, 2000);
+
+        // carousel
         const sponsorCarousel = document.querySelector('#sponsorCarousel');
-        const carousel = new bootstrap.Carousel(sponsorCarousel, {
-            interval: 3000, // ganti setiap 3 detik
-            ride: 'carousel',
-            pause: false
-        });
+        if (sponsorCarousel) {
+            new bootstrap.Carousel(sponsorCarousel, {
+                interval: 3000,
+                ride: 'carousel',
+                pause: false,
+            });
+        }
     </script>
 </body>
+</html>
