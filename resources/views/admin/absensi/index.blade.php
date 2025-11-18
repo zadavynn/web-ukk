@@ -12,7 +12,7 @@
 
     <div class="card">
         <div class="card-body">
-            <table id="example" class="table table-striped table-bordered">
+            <table id="example" class="table table-striped table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Kegiatan</th>
@@ -31,13 +31,16 @@
                             <td>{{ $absensi->keterangan }}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" data-bs-toggle="modal"
-                                    data-bs-target="#detailModal{{ $absensi->id }}">Detail</button>
-                                <a href="{{ route('absensi.edit', $absensi->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    data-bs-target="#detailModal{{ $absensi->id }}" aria-label="Detail"><i
+                                        class="bi bi-eye"></i></button>
+                                <a href="{{ route('absensi.edit', $absensi->id) }}" class="btn btn-sm btn-warning"
+                                    aria-label="Edit"><i class="bi bi-pencil"></i></a>
                                 <form action="{{ route('absensi.destroy', $absensi->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus absensi ini?')">Hapus</button>
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus absensi ini?')"
+                                        aria-label="Hapus"><i class="bi bi-trash"></i></button>
                                 </form>
                             </td>
                         </tr>

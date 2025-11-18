@@ -16,6 +16,7 @@
                 <thead>
                     <tr>
                         <th>Nama</th>
+                        <th>Jabatan</th>
                         <th>Email</th>
                         <th>Telepon</th>
                         <th>Kegiatan</th>
@@ -25,19 +26,34 @@
                 <tbody>
                     @foreach ($panitias as $panitia)
                         <tr>
-                            <td>{{ $panitia->nama }}</td>
+                            <td>{{ $panitia->nama }} @if ($panitia->jabatan == 'ketua')
+                                    <span class="badge bg-primary">Ketua</span>
+                                @elseif($panitia->jabatan == 'wakil_ketua')
+                                    <span class="badge bg-secondary">Wakil Ketua</span>
+                                @elseif($panitia->jabatan == 'bendahara')
+                                    <span class="badge bg-success">Bendahara</span>
+                                @elseif($panitia->jabatan == 'sekretaris')
+                                    <span class="badge bg-info">Sekretaris</span>
+                                @else
+                                    <span class="badge bg-light text-dark">Anggota</span>
+                                @endif
+                            </td>
+                            <td>{{ ucfirst(str_replace('_', ' ', $panitia->jabatan)) }}</td>
                             <td>{{ $panitia->email }}</td>
                             <td>{{ $panitia->telepon }}</td>
                             <td>{{ implode(', ', $panitia->kegiatans) }}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" data-bs-toggle="modal"
-                                    data-bs-target="#detailModal{{ $panitia->id }}">Detail</button>
-                                <a href="{{ route('panitia.edit', $panitia->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    data-bs-target="#detailModal{{ $panitia->id }}" aria-label="Detail"><i
+                                        class="bi bi-eye"></i></button>
+                                <a href="{{ route('panitia.edit', $panitia->id) }}" class="btn btn-sm btn-warning"
+                                    aria-label="Edit"><i class="bi bi-pencil"></i></a>
                                 <form action="{{ route('panitia.destroy', $panitia->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus panitia ini?')">Hapus</button>
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus panitia ini?')"
+                                        aria-label="Hapus"><i class="bi bi-trash"></i></button>
                                 </form>
                             </td>
                         </tr>
@@ -59,6 +75,7 @@
                         <p><strong>Nama:</strong> {{ $panitia->nama }}</p>
                         <p><strong>Email:</strong> {{ $panitia->email }}</p>
                         <p><strong>Telepon:</strong> {{ $panitia->telepon }}</p>
+                        <p><strong>Jabatan:</strong> {{ ucfirst(str_replace('_', ' ', $panitia->jabatan)) }}</p>
                         <p><strong>Kegiatan:</strong> {{ implode(', ', $panitia->kegiatans) }}</p>
                     </div>
                 </div>

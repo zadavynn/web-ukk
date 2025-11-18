@@ -32,6 +32,7 @@ class PanitiaController extends Controller
             'nama' => 'required|string|max:255',
             'email' => 'required|email|unique:panitias,email',
             'telepon' => 'required|string|max:20',
+            'jabatan' => 'required|in:ketua,wakil_ketua,bendahara,sekretaris,anggota',
             'kegiatan_ids' => 'array',
         ]);
 
@@ -39,6 +40,7 @@ class PanitiaController extends Controller
             'nama' => $request->nama,
             'email' => $request->email,
             'telepon' => $request->telepon,
+            'jabatan' => $request->jabatan,
         ]);
 
         if ($request->kegiatan_ids) {
@@ -84,6 +86,7 @@ class PanitiaController extends Controller
             'nama' => 'required|string|max:255',
             'email' => 'required|email|unique:panitias,email,' . $id,
             'telepon' => 'required|string|max:20',
+            'jabatan' => 'required|in:ketua,wakil_ketua,bendahara,sekretaris,anggota',
             'kegiatan_ids' => 'array',
         ]);
 
@@ -91,6 +94,7 @@ class PanitiaController extends Controller
             'nama' => $request->nama,
             'email' => $request->email,
             'telepon' => $request->telepon,
+            'jabatan' => $request->jabatan,
         ]);
 
         DB::table('kegiatan_panitia')->where('panitia_id', $id)->delete();

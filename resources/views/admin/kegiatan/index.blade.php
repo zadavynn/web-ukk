@@ -12,7 +12,7 @@
 
     <div class="card">
         <div class="card-body">
-            <table id="example" class="table table-striped table-bordered">
+            <table id="example" class="table table-striped table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Nama</th>
@@ -41,15 +41,17 @@
                             <td>{{ implode(', ', $kegiatan->sponsors) }}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" data-bs-toggle="modal"
-                                    data-bs-target="#detailModal{{ $kegiatan->id }}">Detail</button>
-                                <a href="{{ route('kegiatan.edit', $kegiatan->id) }}"
-                                    class="btn btn-sm btn-warning">Edit</a>
+                                    data-bs-target="#detailModal{{ $kegiatan->id }}" aria-label="Detail"><i
+                                        class="bi bi-eye"></i></button>
+                                <a href="{{ route('kegiatan.edit', $kegiatan->id) }}" class="btn btn-sm btn-warning"
+                                    aria-label="Edit"><i class="bi bi-pencil"></i></a>
                                 @if ($kegiatan->status == 'belum_selesai')
                                     <form action="{{ route('kegiatan.finish', $kegiatan->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-success"
-                                            onclick="return confirm('Apakah Anda yakin ingin menyelesaikan kegiatan ini?')">Selesai</button>
+                                            onclick="return confirm('Apakah Anda yakin ingin menyelesaikan kegiatan ini?')"><i
+                                                class="bi bi-check-circle"></i></button>
                                     </form>
                                 @endif
                                 <form action="{{ route('kegiatan.destroy', $kegiatan->id) }}" method="POST"
@@ -57,7 +59,8 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')">Hapus</button>
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')"
+                                        aria-label="Hapus"><i class="bi bi-trash"></i></button>
                                 </form>
                             </td>
                         </tr>

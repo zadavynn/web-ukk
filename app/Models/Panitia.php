@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Panitia extends Model
 {
-    protected $fillable = ['nama', 'email', 'telepon'];
+    protected $fillable = ['nama', 'email', 'telepon', 'jabatan'];
 }
