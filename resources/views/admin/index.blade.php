@@ -83,7 +83,7 @@
                                     @if ($kegiatan->status == 'selesai')
                                         <span class="badge bg-success">Selesai</span>
                                     @else
-                                        <span class="badge bg-primary">Berlangsung</span>
+                                        <span class="badge bg-primary">Belum Selesai</span>
                                     @endif
                                 </td>
                                 <td>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</td>

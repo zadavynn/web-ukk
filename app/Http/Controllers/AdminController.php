@@ -20,8 +20,9 @@ class AdminController extends Controller
         $totalSponsor = DB::table('sponsors')->count();
         $totalCatatan = DB::table('catatans')->count();
 
-        // Get latest 3 kegiatan with relationships
+        // Get latest 3 kegiatan with relationships, prioritizing unfinished
         $latestKegiatans = DB::table('kegiatans')
+            ->orderByRaw("CASE WHEN status != 'selesai' THEN 0 ELSE 1 END")
             ->orderBy('created_at', 'desc')
             ->take(3)
             ->get()

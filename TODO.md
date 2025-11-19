@@ -1,6 +1,4 @@
-# TODO: Update Kegiatan Terbaru Table in Admin Dashboard
+# TODO List for Updating Admin Dashboard Kegiatan Terbaru
 
-## Tasks
-
--   [x] Modify the query in AdminController.php to prioritize unfinished kegiatans (status != 'selesai') first, then by latest created_at, while limiting to 3 records.
--   [x] Verify the changes work as expected (no specific test command, assume manual verification).
+-   [x] Modify query in AdminController.php to prioritize unfinished activities (status != 'selesai') first, then by latest created_at, limiting to 3 records.
+-   [x] Verify the changes work as expected (optional: run the app and check the dashboard).
