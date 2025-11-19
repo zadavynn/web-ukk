@@ -3,10 +3,92 @@
 
 @section('content')
 
-    <!-- ========================= HERO ========================= -->
-    <div class="container mt-4">
+    <!-- ===================== NOTIFIKASI / GIMIK ===================== -->
+    <div class="container my-4">
+        <div class="alert alert-info alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-megaphone-fill me-2"></i>
+            <strong>Info Terbaru:</strong> Beberapa kegiatan baru saja ditambahkan! Yuk cek jadwalnya!
+        </div>
+    </div>
 
-        <div id="heroCarousel" class="carousel slide mb-5 shadow rounded" data-bs-ride="carousel">
+    <div class="container mt-4">
+        <div id="carousel10" class="carousel slide shadow rounded-4 overflow-hidden" data-bs-ride="carousel"
+            data-bs-interval="5000">
+            <div class="carousel-inner">
+                <!-- SLIDE 1 -->
+                <div class="carousel-item active">
+                    <div class="d-flex align-items-center justify-content-center text-center text-white p-5 bg-dark bg-opacity-50"
+                        style="background-image: url('{{ asset('storage/img/background/kegiatan-user-1.jpeg') }}'); background-size: cover; background-position: center; height: 590px;">
+                    </div>
+                </div>
+                <!-- SLIDE 2 -->
+                <div class="carousel-item">
+                    <div class="d-flex align-items-center justify-content-center text-center text-white p-5 bg-dark bg-opacity-50"
+                        style="background-image: url('{{ asset('storage/img/background/kegiatan-user-2.jpg') }}'); background-size: cover; background-position: center; height: 590px;">
+                    </div>
+                </div>
+                <!-- SLIDE 3 -->
+                <div class="carousel-item">
+                    <div class="d-flex align-items-center justify-content-center text-center text-white p-5 bg-dark bg-opacity-50"
+                        style="background-image: url('{{ asset('storage/img/background/kegiatan-user-3.jpg') }}'); background-size: cover; background-position: center; height: 590px;">
+                    </div>
+                </div>
+                <!-- SLIDE 4 -->
+                <div class="carousel-item">
+                    <div class="d-flex align-items-center justify-content-center text-center text-white p-5 bg-dark bg-opacity-50"
+                        style="background-image: url('{{ asset('storage/img/background/kegiatan-user-4.jpg') }}'); background-size: cover; background-position: center; height: 590px;">
+                    </div>
+                </div>
+                <!-- SLIDE 5 -->
+                <div class="carousel-item">
+                    <div class="d-flex align-items-center justify-content-center text-center text-white p-5 bg-dark bg-opacity-50"
+                        style="background-image: url('{{ asset('storage/img/background/kegiatan-user-5.jpg') }}'); background-size: cover; background-position: center; height: 590px;">
+                    </div>
+                </div>
+                <!-- SLIDE 6 -->
+                <div class="carousel-item">
+                    <div class="d-flex align-items-center justify-content-center text-center text-white p-5 bg-dark bg-opacity-50"
+                        style="background-image: url('{{ asset('storage/img/background/kegiatan-user-6.jpg') }}'); background-size: cover; background-position: center; height: 590px;">
+                    </div>
+                </div>
+                <!-- SLIDE 7 -->
+                <div class="carousel-item">
+                    <div class="d-flex align-items-center justify-content-center text-center text-white p-5 bg-dark bg-opacity-50"
+                        style="background-image: url('{{ asset('storage/img/background/kegiatan-user-7.jpg') }}'); background-size: cover; background-position: center; height: 590px;">
+                    </div>
+                </div>
+                <!-- SLIDE 8 -->
+                <div class="carousel-item">
+                    <div class="d-flex align-items-center justify-content-center text-center text-white p-5 bg-dark bg-opacity-50"
+                        style="background-image: url('{{ asset('storage/img/background/kegiatan-user-8.jpg') }}'); background-size: cover; background-position: center; height: 590px;">
+                    </div>
+                </div>
+                <!-- SLIDE 9 -->
+                <div class="carousel-item">
+                    <div class="d-flex align-items-center justify-content-center text-center text-white p-5 bg-dark bg-opacity-50"
+                        style="background-image: url('{{ asset('storage/img/background/kegiatan-user-9.jpg') }}'); background-size: cover; background-position: center; height: 590px;">
+                    </div>
+                </div>
+                <!-- SLIDE 10 -->
+                <div class="carousel-item">
+                    <div class="d-flex align-items-center justify-content-center text-center text-white p-5 bg-dark bg-opacity-50"
+                        style="background-image: url('{{ asset('storage/img/background/kegiatan-user-10.jpg') }}'); background-size: cover; background-position: center; height: 590px;">
+                    </div>
+                </div>
+            </div>
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel10" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel10" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========================= HERO ========================= -->
+    <div class="container mt-5">
+        <div id="heroCarousel" class="carousel slide mb-5 shadow rounded-3 overflow-hidden" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="bg-primary text-white text-center p-5">
@@ -28,18 +110,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-    <!-- ===================== NOTIFIKASI / GIMIK ===================== -->
-    <div class="container mb-4">
-        <div class="alert alert-info alert-dismissible fade show shadow-sm" role="alert">
-            <i class="bi bi-megaphone-fill me-2"></i>
-            <strong>Info Terbaru:</strong> Beberapa kegiatan baru saja ditambahkan! Yuk cek jadwalnya!
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    </div>
-
 
     <!-- ====================== KEGIATAN YANG AKAN DATANG ====================== -->
     <div class="container mb-5">

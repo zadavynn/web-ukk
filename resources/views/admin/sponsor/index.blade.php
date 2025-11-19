@@ -50,7 +50,7 @@
 
     @foreach ($sponsors as $sponsor)
         <div class="modal fade" id="detailModal{{ $sponsor->id }}" tabindex="-1">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Detail Sponsor: {{ $sponsor->nama_sponsor }}</h5>

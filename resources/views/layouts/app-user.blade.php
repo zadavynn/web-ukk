@@ -38,7 +38,6 @@
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold">Menu Cepat</h5>
                     <ul class="list-unstyled small">
-                        <li><a href="{{ route('user') }}" class="text-light text-decoration-none">Beranda</a></li>
                         <li><a href="{{ route('user') }}" class="text-light text-decoration-none">Kegiatan</a></li>
                     </ul>
                 </div>

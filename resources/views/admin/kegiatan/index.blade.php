@@ -72,7 +72,7 @@
 
     @foreach ($kegiatans as $kegiatan)
         <div class="modal fade" id="detailModal{{ $kegiatan->id }}" tabindex="-1">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Detail Kegiatan: {{ $kegiatan->nama }}</h5>
