@@ -44,7 +44,7 @@
                     <label class="form-label">Kegiatan Terlibat</label>
                     <div class="row">
                         @foreach ($kegiatans as $kegiatan)
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="kegiatan_ids[]"
                                         value="{{ $kegiatan->id }}" id="kegiatan{{ $kegiatan->id }}"

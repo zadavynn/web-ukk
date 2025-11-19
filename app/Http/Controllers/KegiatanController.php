@@ -95,8 +95,7 @@ class KegiatanController extends Controller
 
     public function edit($id)
     {
-        $kegiatan = DB::table('kegiatans')->where('id', $id)->first();
-        if (!$kegiatan) abort(404);
+        $kegiatan = \App\Models\Kegiatan::findOrFail($id);
         $panitias = DB::table('panitias')->get();
         $sponsors = DB::table('sponsors')->get();
         $selected_panitias = DB::table('kegiatan_panitia')

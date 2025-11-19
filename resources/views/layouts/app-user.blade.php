@@ -7,6 +7,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -18,9 +19,7 @@
     </nav>
 
     <main class="flex-grow-1">
-        <div class="container pt-4">
-            @yield('content')
-        </div>
+        @yield('content')
     </main>
 
     <footer class="bg-secondary text-light pb-1 pt-3 mt-5">
@@ -53,4 +52,5 @@
         }
     </script>
 </body>
+
 </html>

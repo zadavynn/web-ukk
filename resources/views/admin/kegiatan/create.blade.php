@@ -26,7 +26,7 @@
                     <label class="form-label">Panitia Terlibat</label>
                     <div class="row">
                         @foreach ($panitias as $panitia)
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="panitia_ids[]"
                                         value="{{ $panitia->id }}" id="panitia{{ $panitia->id }}">
@@ -42,7 +42,7 @@
                     <label class="form-label">Sponsor Kerjasama</label>
                     <div class="row">
                         @foreach ($sponsors as $sponsor)
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="sponsor_ids[]"
                                         value="{{ $sponsor->id }}" id="sponsor{{ $sponsor->id }}">

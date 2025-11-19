@@ -16,9 +16,9 @@
                 <thead>
                     <tr>
                         <th>Nama</th>
+                        <th>Status</th>
                         <th>Tanggal</th>
                         <th>Lokasi</th>
-                        <th>Status</th>
                         <th>Panitia</th>
                         <th>Sponsor</th>
                         <th>Aksi</th>
@@ -28,8 +28,6 @@
                     @foreach ($kegiatans as $kegiatan)
                         <tr>
                             <td>{{ $kegiatan->nama }}</td>
-                            <td>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</td>
-                            <td>{{ $kegiatan->lokasi }}</td>
                             <td>
                                 @if ($kegiatan->status == 'selesai')
                                     <span class="badge bg-success">Selesai</span>
@@ -37,6 +35,8 @@
                                     <span class="badge bg-warning">Belum Selesai</span>
                                 @endif
                             </td>
+                            <td>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</td>
+                            <td>{{ $kegiatan->lokasi }}</td>
                             <td>{{ implode(', ', $kegiatan->panitias) }}</td>
                             <td>{{ implode(', ', $kegiatan->sponsors) }}</td>
                             <td>
