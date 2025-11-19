@@ -12,7 +12,7 @@
 
     <div class="card">
         <div class="card-body">
-            <table id="example" class="table table-striped table-bordered">
+            <table id="example" class="table table-striped table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Nama</th>
@@ -26,7 +26,9 @@
                 <tbody>
                     @foreach ($panitias as $panitia)
                         <tr>
-                            <td>{{ $panitia->nama }} @if ($panitia->jabatan == 'ketua')
+                            <td>{{ $panitia->nama }}</td>
+                            <td>
+                                @if ($panitia->jabatan == 'ketua')
                                     <span class="badge bg-primary">Ketua</span>
                                 @elseif($panitia->jabatan == 'wakil_ketua')
                                     <span class="badge bg-secondary">Wakil Ketua</span>
@@ -38,7 +40,6 @@
                                     <span class="badge bg-light text-dark">Anggota</span>
                                 @endif
                             </td>
-                            <td>{{ ucfirst(str_replace('_', ' ', $panitia->jabatan)) }}</td>
                             <td>{{ $panitia->email }}</td>
                             <td>{{ $panitia->telepon }}</td>
                             <td>{{ implode(', ', $panitia->kegiatans) }}</td>

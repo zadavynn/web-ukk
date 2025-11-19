@@ -22,11 +22,59 @@
         @yield('content')
     </main>
 
-    <footer class="bg-secondary text-light pb-1 pt-3 mt-5">
-        <div class="container text-center">
-            <p>&copy; 2025 Admin SMK Syafi'i Akrom. All rights reserved.</p>
+    <footer class="bg-dark text-light pt-5 pb-3 mt-5">
+        <div class="container">
+            <div class="row text-center text-md-start">
+
+                <!-- Brand / Sekolah -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold">SMK Syafi'i Akrom</h5>
+                    <p class="small">
+                        Portal resmi informasi kegiatan sekolah, dokumentasi acara, dan pengumuman penting lainnya.
+                    </p>
+                </div>
+
+                <!-- Menu Cepat -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold">Menu Cepat</h5>
+                    <ul class="list-unstyled small">
+                        <li><a href="{{ route('user') }}" class="text-light text-decoration-none">Beranda</a></li>
+                        <li><a href="{{ route('user') }}" class="text-light text-decoration-none">Kegiatan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sosial Media -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold">Ikuti Kami</h5>
+                    <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-2">
+                        <a href="https://www.facebook.com/smksapekalongan/" class="text-light fs-4" target="_blank">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/smksapekalongan/" class="text-light fs-4" target="_blank">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UChfApbOeJSsKf9piaw3o-Nw" class="text-light fs-4"
+                            target="_blank">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@smksyafiiakrom" class="text-light fs-4" target="_blank">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="border-light">
+
+            <!-- Copyright -->
+            <div class="text-center small mt-3">
+                &copy; 2025 Admin SMK Syafi'i Akrom. All rights reserved.
+            </div>
+
         </div>
     </footer>
+
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 
