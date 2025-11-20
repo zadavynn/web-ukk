@@ -1,5 +1,5 @@
 @extends('layouts.app-user')
-@section('title', 'SMK Syafi\'i Akrom - Portal Informasi Kegiatan')
+@section('title', 'SMK Syafi\'i Akrom - Informasi Kegiatan')
 
 @section('content')
 

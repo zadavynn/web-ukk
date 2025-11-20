@@ -30,7 +30,7 @@
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold">SMK Syafi'i Akrom</h5>
                     <p class="small">
-                        Portal resmi informasi kegiatan sekolah, dokumentasi acara, dan pengumuman penting lainnya.
+                        Portal resmi informasi kegiatan sekolah.
                     </p>
                 </div>
 
