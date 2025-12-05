@@ -44,9 +44,6 @@
                             <td>{{ $panitia->telepon }}</td>
                             <td>{{ implode(', ', $panitia->kegiatans) }}</td>
                             <td>
-                                <button class="btn btn-sm btn-info" data-bs-toggle="modal"
-                                    data-bs-target="#detailModal{{ $panitia->id }}" aria-label="Detail"><i
-                                        class="bi bi-eye"></i></button>
                                 <a href="{{ route('panitia.edit', $panitia->id) }}" class="btn btn-sm btn-warning"
                                     aria-label="Edit"><i class="bi bi-pencil"></i></a>
                                 <form action="{{ route('panitia.destroy', $panitia->id) }}" method="POST" class="d-inline">
@@ -63,24 +60,4 @@
             </table>
         </div>
     </div>
-
-    @foreach ($panitias as $panitia)
-        <div class="modal fade" id="detailModal{{ $panitia->id }}" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Detail Panitia: {{ $panitia->nama }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>Nama:</strong> {{ $panitia->nama }}</p>
-                        <p><strong>Email:</strong> {{ $panitia->email }}</p>
-                        <p><strong>Telepon:</strong> {{ $panitia->telepon }}</p>
-                        <p><strong>Jabatan:</strong> {{ ucfirst(str_replace('_', ' ', $panitia->jabatan)) }}</p>
-                        <p><strong>Kegiatan:</strong> {{ implode(', ', $panitia->kegiatans) }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
 @endsection

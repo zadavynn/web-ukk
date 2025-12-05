@@ -15,13 +15,13 @@
             <table id="example" class="table table-striped table-bordered text-center">
                 <thead>
                     <tr>
-                        <th>Nama</th>
-                        <th>Status</th>
-                        <th>Tanggal</th>
-                        <th>Lokasi</th>
-                        <th>Panitia</th>
-                        <th>Sponsor</th>
-                        <th>Aksi</th>
+                        <th class="col-2">Nama</th>
+                        <th class="col-2">Status</th>
+                        <th class="col-2">Tanggal</th>
+                        <th class="col-2">Lokasi</th>
+                        <th class="col-1">Panitia</th>
+                        <th class="col-1">Sponsor</th>
+                        <th class="col-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,8 +37,8 @@
                             </td>
                             <td>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</td>
                             <td>{{ $kegiatan->lokasi }}</td>
-                            <td>{{ implode(', ', $kegiatan->panitias) }}</td>
-                            <td>{{ implode(', ', $kegiatan->sponsors) }}</td>
+                            <td>{{ count($kegiatan->panitias) }}</td>
+                            <td>{{ count($kegiatan->sponsors) }}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" data-bs-toggle="modal"
                                     data-bs-target="#detailModal{{ $kegiatan->id }}" aria-label="Detail"><i
@@ -70,23 +70,50 @@
         </div>
     </div>
 
+    <!-- Modal Detail Kegiatan -->
     @foreach ($kegiatans as $kegiatan)
         <div class="modal fade" id="detailModal{{ $kegiatan->id }}" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Detail Kegiatan: {{ $kegiatan->nama }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <div class="modal-content border-0 shadow-sm">
+                    <!-- HEADER -->
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title fw-bold">
+                            <i class="bi bi-info-circle me-2"></i>
+                            Detail Kegiatan: {{ $kegiatan->nama }}
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
+                    <!-- BODY -->
                     <div class="modal-body">
-                        <p><strong>Tanggal:</strong> {{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</p>
-                        <p><strong>Lokasi:</strong> {{ $kegiatan->lokasi }}</p>
-                        <p><strong>Status:</strong> {{ $kegiatan->status == 'selesai' ? 'Selesai' : 'Belum Selesai' }}</p>
-                        <p><strong>Panitia:</strong> {{ implode(', ', $kegiatan->panitias) }}</p>
-                        <p><strong>Sponsor:</strong> {{ implode(', ', $kegiatan->sponsors) }}</p>
+                        <div class="list-group">
+                            <div class="list-group-item d-flex justify-content-between">
+                                <span><i class="bi bi-flag me-2"></i><strong>Status</strong></span>
+                                <span
+                                    class="badge {{ $kegiatan->status == 'selesai' ? 'bg-success' : 'bg-warning text-dark' }}">
+                                    {{ $kegiatan->status == 'selesai' ? 'Selesai' : 'Belum Selesai' }}
+                                </span>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between">
+                                <span><i class="bi bi-calendar3 me-2"></i><strong>Tanggal</strong></span>
+                                <span>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</span>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between">
+                                <span><i class="bi bi-geo-alt me-2"></i><strong>Lokasi</strong></span>
+                                <span>{{ $kegiatan->lokasi }}</span>
+                            </div>
+                            <div class="list-group-item">
+                                <strong><i class="bi bi-people me-2"></i>Panitia</strong>
+                                <div class="mt-1">{{ implode(', ', $kegiatan->panitias) }}</div>
+                            </div>
+                            <div class="list-group-item">
+                                <strong><i class="bi bi-building me-2"></i>Sponsor</strong>
+                                <div class="mt-1">{{ implode(', ', $kegiatan->sponsors) }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     @endforeach
+
 @endsection

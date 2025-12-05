@@ -1,4 +1,8 @@
-# TODO List for Updating Admin Dashboard Kegiatan Terbaru
-
--   [x] Modify query in AdminController.php to prioritize unfinished activities (status != 'selesai') first, then by latest created_at, limiting to 3 records.
--   [x] Verify the changes work as expected (optional: run the app and check the dashboard).
+-   [ ] Buat migrasi baru untuk mengubah tabel absensis: ganti panitia_id dengan kelas, tambah jumlah_hadir, hapus status
+-   [ ] Update model Absensi fillable fields
+-   [ ] Update AbsensiController: index, create, store, edit, update, getAvailablePanitia (ubah menjadi getAvailableKelas)
+-   [ ] Update view index.blade.php: ganti kolom Panitia dengan Kelas, Status dengan Jumlah Hadir
+-   [ ] Update view create.blade.php: ganti select panitia dengan select kelas, hapus status, tambah input jumlah_hadir
+-   [ ] Update view edit.blade.php: sama seperti create
+-   [ ] Update routes jika perlu
+-   [ ] Jalankan migrasi
