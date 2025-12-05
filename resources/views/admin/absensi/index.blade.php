@@ -22,7 +22,6 @@
             <table id="example" class="table table-striped table-bordered text-center">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Kegiatan</th>
                         <th>Kelas</th>
                         <th>Jumlah Hadir</th>
@@ -32,7 +31,6 @@
                 <tbody>
                     @forelse ($absensis as $key => $absensi)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
                             <td>{{ $absensi->kegiatan_nama }}</td>
                             <td>
                                 <span class="badge bg-primary">{{ $absensi->kelas }}</span>
