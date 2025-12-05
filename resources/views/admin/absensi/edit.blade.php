@@ -2,50 +2,50 @@
 @section('title', 'Edit Absensi')
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Edit Absensi</h1>
+        <h1>Edit Absensi Siswa</h1>
         <a href="{{ route('absensi.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
+
+    @if (session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
 
     <div class="card">
         <div class="card-body">
             <form action="{{ route('absensi.update', $absensi->id) }}" method="POST">
                 @csrf
                 @method('PUT')
+
                 <div class="mb-3">
-                    <label for="kegiatan_id" class="form-label">Kegiatan</label>
-                    <select class="form-control" id="kegiatan_id" name="kegiatan_id" required>
-                        <option value="">Pilih Kegiatan</option>
+                    <label class="form-label">Kegiatan</label>
+                    <select name="kegiatan_id" class="form-select" required>
                         @foreach ($kegiatans as $kegiatan)
                             <option value="{{ $kegiatan->id }}"
-                                {{ $absensi->kegiatan_id == $kegiatan->id ? 'selected' : '' }}>{{ $kegiatan->nama }}
+                                {{ $kegiatan->id == $absensi->kegiatan_id ? 'selected' : '' }}>
+                                {{ $kegiatan->nama }}
                             </option>
                         @endforeach
                     </select>
                 </div>
+
                 <div class="mb-3">
-                    <label for="panitia_id" class="form-label">Panitia</label>
-                    <select class="form-control" id="panitia_id" name="panitia_id" required>
-                        <option value="">Pilih Panitia</option>
-                        @foreach ($panitias as $panitia)
-                            <option value="{{ $panitia->id }}"
-                                {{ $absensi->panitia_id == $panitia->id ? 'selected' : '' }}>{{ $panitia->nama }}
+                    <label class="form-label">Kelas</label>
+                    <select name="kelas" class="form-select" required>
+                        @foreach ($kelasList as $kelas)
+                            <option value="{{ $kelas }}" {{ $kelas == $absensi->kelas ? 'selected' : '' }}>
+                                {{ $kelas }}
                             </option>
                         @endforeach
                     </select>
                 </div>
+
                 <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select class="form-control" id="status" name="status" required>
-                        <option value="hadir" {{ $absensi->status == 'hadir' ? 'selected' : '' }}>Hadir</option>
-                        <option value="tidak_hadir" {{ $absensi->status == 'tidak_hadir' ? 'selected' : '' }}>Tidak Hadir
-                        </option>
-                    </select>
+                    <label class="form-label">Jumlah Hadir</label>
+                    <input type="number" name="jumlah_hadir" class="form-control" value="{{ $absensi->jumlah_hadir }}"
+                        required>
                 </div>
-                <div class="mb-3">
-                    <label for="keterangan" class="form-label">Keterangan</label>
-                    <textarea class="form-control" id="keterangan" name="keterangan" rows="3">{{ $absensi->keterangan }}</textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Update</button>
+
+                <button type="submit" class="btn btn-warning">Update</button>
             </form>
         </div>
     </div>

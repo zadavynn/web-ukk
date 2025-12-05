@@ -23,7 +23,6 @@ Route::get('absensi', [AbsensiController::class, 'index']);
 Route::post('absensi', [AbsensiController::class, 'store']);
 Route::put('absensi/{id}', [AbsensiController::class, 'update']);
 Route::delete('absensi/{id}', [AbsensiController::class, 'destroy']);
-Route::get('/admin/absensi/get-available-panitia/{kegiatanId}', [AbsensiController::class, 'getAvailablePanitia'])->name('absensi.available-panitia');
 
 // halaman catatan admin
 Route::get('catatan', [CatatanController::class, 'index']);

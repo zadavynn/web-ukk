@@ -38,7 +38,7 @@
                         @endforeach
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-warning">Update</button>
             </form>
         </div>
     </div>

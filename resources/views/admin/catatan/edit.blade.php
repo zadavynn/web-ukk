@@ -26,7 +26,7 @@
                     <label for="catatan" class="form-label">Catatan</label>
                     <textarea class="form-control" id="catatan" name="catatan" rows="4" required>{{ $catatan->catatan }}</textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-warning">Update</button>
             </form>
         </div>
     </div>

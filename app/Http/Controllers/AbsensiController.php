@@ -11,121 +11,110 @@ class AbsensiController extends Controller
     {
         $absensis = DB::table('absensis')
             ->join('kegiatans', 'absensis.kegiatan_id', '=', 'kegiatans.id')
-            ->join('panitias', 'absensis.panitia_id', '=', 'panitias.id')
-            ->select('absensis.*', 'kegiatans.nama as kegiatan_nama', 'panitias.nama as panitia_nama')
+            ->select('absensis.*', 'kegiatans.nama as kegiatan_nama')
             ->get();
+
         return view('admin.absensi.index', compact('absensis'));
     }
 
     public function create()
     {
-        $kegiatans = DB::table('kegiatans')->where('status', 'selesai')->get();
-        $panitias = DB::table('panitias')->get();
+        $kegiatans = DB::table('kegiatans')->get();
 
-        // Filter panitia yang belum absen untuk kegiatan yang dipilih
-        $available_panitias = $panitias->filter(function ($panitia) use ($kegiatans) {
-            foreach ($kegiatans as $kegiatan) {
-                $exists = DB::table('absensis')
-                    ->where('kegiatan_id', $kegiatan->id)
-                    ->where('panitia_id', $panitia->id)
-                    ->exists();
-                if (!$exists) {
-                    return true; // Panitia belum absen untuk setidaknya satu kegiatan
-                }
-            }
-            return false;
-        });
+        // list kelas
+        $kelasList = [
+            'X RPL',
+            'X TKJ',
+            'XI RPL',
+            'XI TKJ',
+            'XII RPL',
+            'XII TKJ'
+        ];
 
-        return view('admin.absensi.create', compact('kegiatans', 'panitias', 'available_panitias'));
+        // default: tidak filter kelas kalau kegiatan belum dipilih
+        $availableKelas = $kelasList;
+
+        return view('admin.absensi.create', compact('kegiatans', 'kelasList', 'availableKelas'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'kegiatan_id' => 'required|exists:kegiatans,id',
-            'panitia_id' => 'required|exists:panitias,id',
-            'status' => 'required|in:hadir,tidak_hadir',
-            'keterangan' => 'nullable|string|max:255',
+            'kelas' => 'required|string',
+            'jumlah_hadir' => 'required|integer|min:0',
         ]);
 
-        // Cek apakah panitia sudah absen untuk kegiatan ini
+        // Cek apakah kelas tersebut sudah absen pada kegiatan itu
         $exists = DB::table('absensis')
             ->where('kegiatan_id', $request->kegiatan_id)
-            ->where('panitia_id', $request->panitia_id)
+            ->where('kelas', $request->kelas)
             ->exists();
 
         if ($exists) {
-            return redirect()->back()->with('error', 'Panitia ini sudah absen untuk kegiatan tersebut.')->withInput();
+            return redirect()->back()->with('error', 'Kelas ini sudah mengisi absensi untuk kegiatan tersebut.')->withInput();
         }
 
         DB::table('absensis')->insert([
             'kegiatan_id' => $request->kegiatan_id,
-            'panitia_id' => $request->panitia_id,
-            'status' => $request->status,
-            'keterangan' => $request->keterangan,
+            'kelas' => $request->kelas,
+            'jumlah_hadir' => $request->jumlah_hadir,
         ]);
 
-        return redirect()->route('absensi.index')->with('success', 'Absensi berhasil dibuat.');
-    }
-
-    public function show($id)
-    {
-        $absensi = DB::table('absensis')
-            ->join('kegiatans', 'absensis.kegiatan_id', '=', 'kegiatans.id')
-            ->join('panitias', 'absensis.panitia_id', '=', 'panitias.id')
-            ->where('absensis.id', $id)
-            ->select('absensis.*', 'kegiatans.nama as kegiatan_nama', 'panitias.nama as panitia_nama')
-            ->first();
-        if (!$absensi) abort(404);
-        return view('admin.absensi.show', compact('absensi'));
+        return redirect()->route('absensi.index')->with('success', 'Absensi siswa berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
         $absensi = DB::table('absensis')->where('id', $id)->first();
         if (!$absensi) abort(404);
+
         $kegiatans = DB::table('kegiatans')->where('status', 'selesai')->get();
-        $panitias = DB::table('panitias')->get();
-        return view('admin.absensi.edit', compact('absensi', 'kegiatans', 'panitias'));
+
+        $kelasList = [
+            'X RPL',
+            'X TKJ',
+            'XI RPL',
+            'XI TKJ',
+            'XII RPL',
+            'XII TKJ'
+        ];
+
+        return view('admin.absensi.edit', compact('absensi', 'kegiatans', 'kelasList'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'kegiatan_id' => 'required|exists:kegiatans,id',
-            'panitia_id' => 'required|exists:panitias,id',
-            'status' => 'required|in:hadir,tidak_hadir',
-            'keterangan' => 'nullable|string|max:255',
+            'kelas' => 'required|string',
+            'jumlah_hadir' => 'required|integer|min:0',
         ]);
+
+        // Cek apabila update menyebabkan duplikat
+        $exists = DB::table('absensis')
+            ->where('kegiatan_id', $request->kegiatan_id)
+            ->where('kelas', $request->kelas)
+            ->where('id', '!=', $id)
+            ->exists();
+
+        if ($exists) {
+            return redirect()->back()->with('error', 'Data absensi untuk kelas dan kegiatan tersebut sudah ada.')->withInput();
+        }
 
         DB::table('absensis')->where('id', $id)->update([
             'kegiatan_id' => $request->kegiatan_id,
-            'panitia_id' => $request->panitia_id,
-            'status' => $request->status,
-            'keterangan' => $request->keterangan,
+            'kelas' => $request->kelas,
+            'jumlah_hadir' => $request->jumlah_hadir,
         ]);
 
-        return redirect()->route('absensi.index')->with('success', 'Absensi berhasil diperbarui.');
+        return redirect()->route('absensi.index')->with('success', 'Absensi siswa berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         DB::table('absensis')->where('id', $id)->delete();
+
         return redirect()->route('absensi.index')->with('success', 'Absensi berhasil dihapus.');
-    }
-
-    public function getAvailablePanitia($kegiatanId)
-    {
-        $panitias = DB::table('panitias')
-            ->whereNotExists(function ($query) use ($kegiatanId) {
-                $query->select(DB::raw(1))
-                    ->from('absensis')
-                    ->whereRaw('absensis.panitia_id = panitias.id')
-                    ->where('absensis.kegiatan_id', $kegiatanId);
-            })
-            ->select('id', 'nama')
-            ->get();
-
-        return response()->json($panitias);
     }
 }
