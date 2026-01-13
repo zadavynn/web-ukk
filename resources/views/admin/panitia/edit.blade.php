@@ -17,8 +17,8 @@
                         required>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{ $panitia->email }}"
+                    <label for="sosmed" class="form-label">Sosmed</label>
+                    <input type="text" class="form-control" id="sosmed" name="sosmed" value="{{ $panitia->sosmed }}"
                         required>
                 </div>
                 <div class="mb-3">
@@ -41,21 +41,9 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Kegiatan Terlibat</label>
-                    <div class="row">
-                        @foreach ($kegiatans as $kegiatan)
-                            <div class="col-md-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="kegiatan_ids[]"
-                                        value="{{ $kegiatan->id }}" id="kegiatan{{ $kegiatan->id }}"
-                                        {{ in_array($kegiatan->id, $panitia->selected_kegiatans ?? []) ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="kegiatan{{ $kegiatan->id }}">
-                                        {{ $kegiatan->nama }}
-                                    </label>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+                    <label for="quotes" class="form-label">Quotes</label>
+                    <input type="text" class="form-control" id="quotes" name="quotes" value="{{ $panitia->quotes }}"
+                        required>
                 </div>
                 <button type="submit" class="btn btn-warning">Update</button>
             </form>

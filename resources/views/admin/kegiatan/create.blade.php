@@ -22,38 +22,6 @@
                     <label for="lokasi_kegiatan" class="form-label">Lokasi</label>
                     <input type="text" class="form-control" id="lokasi_kegiatan" name="lokasi_kegiatan" required>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Panitia Terlibat</label>
-                    <div class="row">
-                        @foreach ($panitias as $panitia)
-                            <div class="col-md-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="panitia_ids[]"
-                                        value="{{ $panitia->id }}" id="panitia{{ $panitia->id }}">
-                                    <label class="form-check-label" for="panitia{{ $panitia->id }}">
-                                        {{ $panitia->nama }}
-                                    </label>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Sponsor Kerjasama</label>
-                    <div class="row">
-                        @foreach ($sponsors as $sponsor)
-                            <div class="col-md-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="sponsor_ids[]"
-                                        value="{{ $sponsor->id }}" id="sponsor{{ $sponsor->id }}">
-                                    <label class="form-check-label" for="sponsor{{ $sponsor->id }}">
-                                        {{ $sponsor->nama_sponsor }}
-                                    </label>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         </div>

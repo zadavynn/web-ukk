@@ -31,7 +31,7 @@
                 <tbody>
                     @forelse ($absensis as $key => $absensi)
                         <tr>
-                            <td>{{ $absensi->kegiatan_nama }}</td>
+                            <td>{{ $absensi->kegiatan }}</td>
                             <td>
                                 <span class="badge bg-primary">{{ $absensi->kelas }}</span>
                             </td>

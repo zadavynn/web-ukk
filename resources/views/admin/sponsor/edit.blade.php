@@ -17,26 +17,14 @@
                         value="{{ $sponsor->nama_sponsor }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="kontak_sponsor" class="form-label">Kontak</label>
-                    <input type="text" class="form-control" id="kontak_sponsor" name="kontak_sponsor"
-                        value="{{ $sponsor->kontak_sponsor }}" required>
+                    <label for="email_sponsor" class="form-label">Email Sponsor</label>
+                    <input type="email" class="form-control" id="email_sponsor" name="email_sponsor"
+                        value="{{ $sponsor->email_sponsor }}" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Kegiatan Disponsori</label>
-                    <div class="row">
-                        @foreach ($kegiatans as $kegiatan)
-                            <div class="col-md-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="kegiatan_ids[]"
-                                        value="{{ $kegiatan->id }}" id="kegiatan{{ $kegiatan->id }}"
-                                        {{ in_array($kegiatan->id, $sponsor->selected_kegiatans ?? []) ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="kegiatan{{ $kegiatan->id }}">
-                                        {{ $kegiatan->nama }}
-                                    </label>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+                    <label for="kegiatan_sponsor" class="form-label">Kegiatan Disponsori</label>
+                    <input type="text" class="form-control" id="kegiatan_sponsor" name="kegiatan_sponsor"
+                        value="{{ $sponsor->kegiatan_sponsor }}">
                 </div>
                 <button type="submit" class="btn btn-warning">Update</button>
             </form>

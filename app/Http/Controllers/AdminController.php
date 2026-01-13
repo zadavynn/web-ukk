@@ -22,26 +22,9 @@ class AdminController extends Controller
 
         // Get latest 3 kegiatan with relationships, prioritizing unfinished
         $latestKegiatans = DB::table('kegiatans')
-            ->orderByRaw("CASE WHEN status != 'selesai' THEN 0 ELSE 1 END")
-            ->orderBy('created_at', 'desc')
+            ->orderBy('tanggal', 'asc')
             ->take(3)
-            ->get()
-            ->map(function ($kegiatan) {
-                $kegiatan->panitias = DB::table('kegiatan_panitia')
-                    ->join('panitias', 'kegiatan_panitia.panitia_id', '=', 'panitias.id')
-                    ->where('kegiatan_panitia.kegiatan_id', $kegiatan->id)
-                    ->pluck('panitias.nama')
-                    ->toArray();
-                $kegiatan->sponsors = DB::table('kegiatan_sponsor')
-                    ->join('sponsors', 'kegiatan_sponsor.sponsor_id', '=', 'sponsors.id')
-                    ->where('kegiatan_sponsor.kegiatan_id', $kegiatan->id)
-                    ->pluck('sponsors.nama_sponsor')
-                    ->toArray();
-                $kegiatan->absensis = DB::table('absensis')
-                    ->where('kegiatan_id', $kegiatan->id)
-                    ->count();
-                return $kegiatan;
-            });
+            ->get();
 
         return view('admin.index', compact(
             'totalKegiatan',

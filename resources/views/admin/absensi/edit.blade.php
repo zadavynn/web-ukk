@@ -18,14 +18,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Kegiatan</label>
-                    <select name="kegiatan_id" class="form-select" required>
-                        @foreach ($kegiatans as $kegiatan)
-                            <option value="{{ $kegiatan->id }}"
-                                {{ $kegiatan->id == $absensi->kegiatan_id ? 'selected' : '' }}>
-                                {{ $kegiatan->nama }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <input type="text" name="kegiatan" class="form-control" required value="{{ $absensi->kegiatan }}">
                 </div>
 
                 <div class="mb-3">

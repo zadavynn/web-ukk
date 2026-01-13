@@ -17,9 +17,9 @@
                     <tr>
                         <th>Nama</th>
                         <th>Jabatan</th>
-                        <th>Email</th>
+                        <th>Sosmed</th>
                         <th>Telepon</th>
-                        <th>Kegiatan</th>
+                        <th>Quotes</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -40,9 +40,9 @@
                                     <span class="badge bg-light text-dark">Anggota</span>
                                 @endif
                             </td>
-                            <td>{{ $panitia->email }}</td>
+                            <td>{{ $panitia->sosmed }}</td>
                             <td>{{ $panitia->telepon }}</td>
-                            <td>{{ implode(', ', $panitia->kegiatans) }}</td>
+                            <td>{{ $panitia->quotes }}</td>
                             <td>
                                 <a href="{{ route('panitia.edit', $panitia->id) }}" class="btn btn-sm btn-warning"
                                     aria-label="Edit"><i class="bi bi-pencil"></i></a>

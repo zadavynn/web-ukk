@@ -70,9 +70,6 @@
                             <th class="col-2">STATUS</th>
                             <th class="col-2">TANGGAL</th>
                             <th class="col-2">LOKASI</th>
-                            <th class="col-1">PANITIA</th>
-                            <th class="col-1">ABSENSI</th>
-                            <th class="col-1">SPONSOR</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -88,9 +85,6 @@
                                 </td>
                                 <td>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</td>
                                 <td>{{ $kegiatan->lokasi ?? '-' }}</td>
-                                <td>{{ count($kegiatan->panitias) }}</td>
-                                <td>{{ $kegiatan->absensis }}</td>
-                                <td>{{ count($kegiatan->sponsors) }}</td>
                             </tr>
                         @empty
                             <tr>

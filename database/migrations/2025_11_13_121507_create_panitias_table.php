@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('panitias', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('email')->unique();
+            $table->enum('jabatan', ['ketua', 'wakil_ketua', 'bendahara', 'sekretaris', 'anggota'])->default('anggota');
+            $table->string('sosmed');
             $table->string('telepon');
+            $table->string('quotes');
             $table->timestamps();
         });
     }

@@ -9,18 +9,13 @@ class AbsensiController extends Controller
 {
     public function index()
     {
-        $absensis = DB::table('absensis')
-            ->join('kegiatans', 'absensis.kegiatan_id', '=', 'kegiatans.id')
-            ->select('absensis.*', 'kegiatans.nama as kegiatan_nama')
-            ->get();
+        $absensis = DB::table('absensis')->get();
 
         return view('admin.absensi.index', compact('absensis'));
     }
 
     public function create()
     {
-        $kegiatans = DB::table('kegiatans')->get();
-
         // list kelas
         $kelasList = [
             'X RPL',
@@ -31,23 +26,20 @@ class AbsensiController extends Controller
             'XII TKJ'
         ];
 
-        // default: tidak filter kelas kalau kegiatan belum dipilih
-        $availableKelas = $kelasList;
-
-        return view('admin.absensi.create', compact('kegiatans', 'kelasList', 'availableKelas'));
+        return view('admin.absensi.create', compact('kelasList'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'kegiatan_id' => 'required|exists:kegiatans,id',
+            'kegiatan' => 'required|string',
             'kelas' => 'required|string',
             'jumlah_hadir' => 'required|integer|min:0',
         ]);
 
         // Cek apakah kelas tersebut sudah absen pada kegiatan itu
         $exists = DB::table('absensis')
-            ->where('kegiatan_id', $request->kegiatan_id)
+            ->where('kegiatan', $request->kegiatan)
             ->where('kelas', $request->kelas)
             ->exists();
 
@@ -56,7 +48,7 @@ class AbsensiController extends Controller
         }
 
         DB::table('absensis')->insert([
-            'kegiatan_id' => $request->kegiatan_id,
+            'kegiatan' => $request->kegiatan,
             'kelas' => $request->kelas,
             'jumlah_hadir' => $request->jumlah_hadir,
         ]);
@@ -67,9 +59,6 @@ class AbsensiController extends Controller
     public function edit($id)
     {
         $absensi = DB::table('absensis')->where('id', $id)->first();
-        if (!$absensi) abort(404);
-
-        $kegiatans = DB::table('kegiatans')->where('status', 'selesai')->get();
 
         $kelasList = [
             'X RPL',
@@ -80,20 +69,20 @@ class AbsensiController extends Controller
             'XII TKJ'
         ];
 
-        return view('admin.absensi.edit', compact('absensi', 'kegiatans', 'kelasList'));
+        return view('admin.absensi.edit', compact('absensi', 'kelasList'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'kegiatan_id' => 'required|exists:kegiatans,id',
+            'kegiatan' => 'required|string',
             'kelas' => 'required|string',
             'jumlah_hadir' => 'required|integer|min:0',
         ]);
 
         // Cek apabila update menyebabkan duplikat
         $exists = DB::table('absensis')
-            ->where('kegiatan_id', $request->kegiatan_id)
+            ->where('kegiatan', $request->kegiatan)
             ->where('kelas', $request->kelas)
             ->where('id', '!=', $id)
             ->exists();
@@ -103,7 +92,7 @@ class AbsensiController extends Controller
         }
 
         DB::table('absensis')->where('id', $id)->update([
-            'kegiatan_id' => $request->kegiatan_id,
+            'kegiatan' => $request->kegiatan,
             'kelas' => $request->kelas,
             'jumlah_hadir' => $request->jumlah_hadir,
         ]);

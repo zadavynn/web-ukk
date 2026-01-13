@@ -18,12 +18,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Kegiatan</label>
-                    <select name="kegiatan_id" class="form-select" required>
-                        <option value="">Pilih Kegiatan</option>
-                        @foreach ($kegiatans as $kegiatan)
-                            <option value="{{ $kegiatan->id }}">{{ $kegiatan->nama }}</option>
-                        @endforeach
-                    </select>
+                    <input type="text" class="form-control" name="kegiatan" required>
                 </div>
 
                 <div class="mb-3">

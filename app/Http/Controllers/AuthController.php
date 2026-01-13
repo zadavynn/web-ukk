@@ -15,20 +15,7 @@ class AuthController extends Controller
         $kegiatans = DB::table('kegiatans')
             ->where('status', '!=', 'selesai')
             ->orderBy('tanggal', 'asc')
-            ->get()
-            ->map(function ($kegiatan) {
-                $kegiatan->panitias = DB::table('kegiatan_panitia')
-                    ->join('panitias', 'kegiatan_panitia.panitia_id', '=', 'panitias.id')
-                    ->where('kegiatan_panitia.kegiatan_id', $kegiatan->id)
-                    ->pluck('panitias.nama')
-                    ->toArray();
-                $kegiatan->sponsors = DB::table('kegiatan_sponsor')
-                    ->join('sponsors', 'kegiatan_sponsor.sponsor_id', '=', 'sponsors.id')
-                    ->where('kegiatan_sponsor.kegiatan_id', $kegiatan->id)
-                    ->pluck('sponsors.nama_sponsor')
-                    ->toArray();
-                return $kegiatan;
-            });
+            ->get();
 
         // Get all panitia
         $panitias = DB::table('panitias')->get();
@@ -36,13 +23,7 @@ class AuthController extends Controller
         // Get all sponsors
         $sponsors = DB::table('sponsors')->get();
 
-        // Get kegiatan yang sudah selesai untuk form catatan
-        $kegiatansSelesai = DB::table('kegiatans')
-            ->where('status', 'selesai')
-            ->orderBy('tanggal', 'desc')
-            ->get();
-
-        return view('user.index', compact('kegiatans', 'panitias', 'sponsors', 'kegiatansSelesai'));
+        return view('user.index', compact('kegiatans', 'panitias', 'sponsors'));
     }
 
     public function login()

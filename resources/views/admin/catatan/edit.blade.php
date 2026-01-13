@@ -12,15 +12,8 @@
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
-                    <label for="kegiatan_id" class="form-label">Kegiatan</label>
-                    <select class="form-control" id="kegiatan_id" name="kegiatan_id" required>
-                        <option value="">Pilih Kegiatan</option>
-                        @foreach ($kegiatans as $kegiatan)
-                            <option value="{{ $kegiatan->id }}"
-                                {{ $catatan->kegiatan_id == $kegiatan->id ? 'selected' : '' }}>{{ $kegiatan->nama }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <label for="kegiatan" class="form-label">Kegiatan</label>
+                    <input type="text" class="form-control" id="kegiatan" name="kegiatan" value="{{ $catatan->kegiatan }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="catatan" class="form-label">Catatan</label>

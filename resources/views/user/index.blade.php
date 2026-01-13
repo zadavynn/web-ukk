@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <!-- ===================== NOTIFIKASI / GIMIK ===================== -->
+    <!-- ===================== POPUP ===================== -->
     <div class="container my-4">
         <div class="alert alert-info alert-dismissible fade show shadow-sm" role="alert">
             <i class="bi bi-megaphone-fill me-2"></i>
@@ -11,6 +11,7 @@
         </div>
     </div>
 
+    <!-- ===================== GALERY ===================== -->
     <div class="container mt-4">
         <div id="carousel10" class="carousel slide shadow rounded-4 overflow-hidden" data-bs-ride="carousel"
             data-bs-interval="5000">
@@ -118,61 +119,25 @@
         <h3 class="fw-bold text-center text-primary mb-1">Kegiatan Yang Akan Datang</h3>
         <p class="text-center text-muted mb-4">Temukan berbagai acara seru yang akan berlangsung dalam waktu dekat.</p>
 
+        <!-- Card Kegiatan -->
         <div class="row g-4">
-
-            <!-- Card Kegiatan -->
+            @foreach ($kegiatans as $kegiatan)
             <div class="col-md-4">
                 <div class="card shadow h-100 border-0">
                     <div class="card-header bg-info text-white text-center fw-bold">
-                        Kegiatan Menarik
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title fw-bold">Judul Kegiatan</h5>
+                        <h5 class="card-title fw-bold">{{ $kegiatan->nama }}</h5>
                         <p class="card-text small mb-1">
-                            <i class="bi bi-geo-alt text-danger"></i> Aula SMK Syafi'i Akrom
+                            <i class="bi bi-geo-alt text-danger"></i> {{ $kegiatan->lokasi }}
                         </p>
-                        <p class="card-text small mb-3">
-                            <i class="bi bi-calendar text-success"></i> 12 Desember 2025
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card Kegiatan 2 -->
-            <div class="col-md-4">
-                <div class="card shadow h-100 border-0">
-                    <div class="card-header bg-info text-white text-center fw-bold">
-                        Event Besar
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Workshop Teknologi</h5>
-                        <p class="card-text small">
-                            <i class="bi bi-geo-alt text-danger"></i> Lab Komputer 1
-                        </p>
-                        <p class="card-text small">
-                            <i class="bi bi-calendar text-success"></i> 20 Desember 2025
+                        <p class="card-text small mb-1">
+                            <i class="bi bi-calendar text-success"></i> {{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}
                         </p>
                     </div>
                 </div>
             </div>
-
-            <!-- Card Kegiatan 3 -->
-            <div class="col-md-4">
-                <div class="card shadow h-100 border-0">
-                    <div class="card-header bg-info text-white text-center fw-bold">
-                        Seminar Edukatif
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Seminar Karir</h5>
-                        <p class="card-text small">
-                            <i class="bi bi-geo-alt text-danger"></i> Ruang Multimedia
-                        </p>
-                        <p class="card-text small">
-                            <i class="bi bi-calendar text-success"></i> 15 Januari 2026
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
         </div>
     </div>
@@ -188,45 +153,41 @@
 
                 <div class="accordion" id="panitiaAccordion">
 
-                    <!-- Panitia 1 -->
+                    @foreach ($panitias as $panitia)
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading1">
                             <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#p1" aria-expanded="false" aria-controls="p1">
-                                Nama Panitia 1 - Jabatan 1
+                                {{ $panitia->nama }} - {{ \Illuminate\Support\Str::headline($panitia->jabatan) }}
                             </button>
                         </h2>
                         <div id="p1" class="accordion-collapse collapse show" aria-labelledby="heading1"
                             data-bs-parent="#panitiaAccordion">
                             <div class="accordion-body">
-                                <p class="mb-1"><strong>Quotes:</strong> “Tetap semangat dalam berproses!”</p>
-                                <small>Kelas: XI RPL 1</small>
+                                <p class="mb-1"><strong>Quotes:</strong> “{{ $panitia->quotes }}”</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Panitia 2 -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading2">
-                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#p2" aria-expanded="false" aria-controls="p2">
-                                Nama Panitia 2 - Jabatan 2
-                            </button>
-                        </h2>
-                        <div id="p2" class="accordion-collapse collapse" aria-labelledby="heading2"
-                            data-bs-parent="#panitiaAccordion">
-                            <div class="accordion-body">
-                                <p class="mb-1"><strong>Quotes:</strong> “Kerja keras tidak akan mengkhianati hasil.”</p>
-                                <small>Kelas: XI TKJ 1</small>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
             </div>
 
-            <!-- Sponsor -->
             <div class="col-md-6">
+                <h3 class="fw-bold text-primary">Sponsor Kami</h3>
+                <p class="text-muted">Mereka yang mendukung kegiatan sekolah.</p>
+
+                @foreach ($sponsors as $sponsor)
+                <ul class="list-group shadow mb-2">
+                    <li class="list-group-item">
+                        <h5 class="fw-bold mb-1">{{ $sponsor->nama_sponsor }}</h5>
+                    </li>
+                </ul>
+                @endforeach
+            </div>
+
+            <!-- Sponsor -->
+            {{-- <div class="col-md-6">
                 <h3 class="fw-bold text-primary">Sponsor Kami</h3>
                 <p class="text-muted">Mereka yang mendukung kegiatan sekolah.</p>
 
@@ -244,7 +205,7 @@
                         <p class="mt-2 mb-1">“Semoga kegiatan sekolah semakin maju!”</p>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
 
         </div>
     </div>
