@@ -9,12 +9,7 @@
     <link rel="stylesheet" href="{{ asset('datatables/css/datatables.min.css') }}">
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#sidebar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <nav class="navbar navbar-dark bg-dark fixed-top ps-3">
             <a class="navbar-brand" href="{{ route('admin') }}">Admin Dashboard</a>
             <a class="btn btn-outline-danger btn-sm" href="{{ route('logout') }}">
                 <i class="bi bi-box-arrow-right"></i> Keluar
