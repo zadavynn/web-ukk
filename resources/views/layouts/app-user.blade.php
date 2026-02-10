@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,40 +8,30 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
 </head>
-
 <body class="d-flex flex-column min-vh-100">
-
     <nav class="navbar sticky-top bg-body-secondary ps-3">
         <div class="container-fluid">
             <a class="navbar-brand fw-semibold" href="{{ route('user') }}">SMK Syafi'i Akrom</a>
         </div>
     </nav>
-
     <main class="flex-grow-1">
         @yield('content')
     </main>
-
     <footer class="bg-dark text-light pt-5 pb-3 mt-5">
         <div class="container">
             <div class="row text-center text-md-start">
-
-                <!-- Brand / Sekolah -->
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold">SMK Syafi'i Akrom</h5>
                     <p class="small">
                         Portal resmi informasi kegiatan sekolah.
                     </p>
                 </div>
-
-                <!-- Menu Cepat -->
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold">Menu Cepat</h5>
                     <ul class="list-unstyled small">
                         <li><a href="{{ route('user') }}" class="text-light text-decoration-none">Kegiatan</a></li>
                     </ul>
                 </div>
-
-                <!-- Sosial Media -->
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold">Ikuti Kami</h5>
                     <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-2">
@@ -61,24 +50,15 @@
                         </a>
                     </div>
                 </div>
-
             </div>
-
             <hr class="border-light">
-
-            <!-- Copyright -->
             <div class="text-center small mt-3">
                 &copy; 2025 Admin SMK Syafi'i Akrom. All rights reserved.
             </div>
-
         </div>
     </footer>
-
-
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-
     <script>
-        // auto-hide alert
         setTimeout(() => {
             const alert = document.getElementById('alert-error');
             if (alert) {
@@ -87,8 +67,6 @@
                 setTimeout(() => alert.remove(), 500);
             }
         }, 2000);
-
-        // carousel
         const sponsorCarousel = document.querySelector('#sponsorCarousel');
         if (sponsorCarousel) {
             new bootstrap.Carousel(sponsorCarousel, {
@@ -99,5 +77,4 @@
         }
     </script>
 </body>
-
 </html>

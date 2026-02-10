@@ -20,11 +20,12 @@ class AdminController extends Controller
         $totalSponsor = DB::table('sponsors')->count();
         $totalCatatan = DB::table('catatans')->count();
 
-        // Get latest 3 kegiatan with relationships, prioritizing unfinished
         $latestKegiatans = DB::table('kegiatans')
-            ->orderBy('tanggal', 'asc')
+            ->orderByRaw("status = 'selesai'") // belum selesai dulu
+            ->orderBy('tanggal', 'desc')
             ->take(3)
             ->get();
+
 
         return view('admin.index', compact(
             'totalKegiatan',

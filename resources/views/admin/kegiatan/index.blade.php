@@ -5,11 +5,9 @@
         <h1>Kegiatan</h1>
         <a href="{{ route('kegiatan.create') }}" class="btn btn-primary">Tambah Kegiatan</a>
     </div>
-
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
     <div class="card">
         <div class="card-body">
             <table id="example" class="table table-striped table-bordered text-center">
@@ -62,5 +60,4 @@
             </table>
         </div>
     </div>
-
 @endsection

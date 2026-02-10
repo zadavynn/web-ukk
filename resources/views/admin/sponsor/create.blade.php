@@ -5,7 +5,6 @@
         <h1>Tambah Sponsor</h1>
         <a href="{{ route('sponsor.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
-
     <div class="card">
         <div class="card-body">
             <form action="{{ route('sponsor.store') }}" method="POST">

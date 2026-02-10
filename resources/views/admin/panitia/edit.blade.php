@@ -5,7 +5,6 @@
         <h1>Edit Panitia</h1>
         <a href="{{ route('panitia.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
-
     <div class="card">
         <div class="card-body">
             <form action="{{ route('panitia.update', $panitia->id) }}" method="POST">

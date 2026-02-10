@@ -5,11 +5,9 @@
         <h1>Catatan</h1>
         <a href="{{ route('catatan.create') }}" class="btn btn-primary">Tambah Catatan</a>
     </div>
-
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
     <div class="card">
         <div class="card-body">
             <table id="example" class="table table-striped table-bordered text-center">

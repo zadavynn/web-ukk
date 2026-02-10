@@ -1,15 +1,11 @@
 @extends('layouts.app-admin')
 @section('title', 'Dashboard Admin')
 @section('content')
-    <!-- Header Dashboard -->
     <div class="text-center mb-3 mt-3">
         <h1 class="fw-semibold text-capitalize">Selamat Datang Admin</h1>
         <p class="text-muted">Kelola kegiatan, panitia, absensi, sponsor, dan catatan dengan mudah.</p>
     </div>
-
-    <!-- Statistik ringkas -->
     <div class="row g-3 mb-4">
-        <!-- Total Kegiatan -->
         <div class="col-md">
             <a href="{{ route('kegiatan.index') }}"
                 class="btn btn-outline-primary w-100 text-center text-decoration-none py-3 shadow-sm">
@@ -18,7 +14,6 @@
                 <p class="mb-0">Total Kegiatan</p>
             </a>
         </div>
-        <!-- Total Panitia -->
         <div class="col-md">
             <a href="{{ route('panitia.index') }}"
                 class="btn btn-outline-success w-100 text-center text-decoration-none py-3 shadow-sm">
@@ -27,7 +22,6 @@
                 <p class="mb-0">Total Panitia</p>
             </a>
         </div>
-        <!-- Total Absensi -->
         <div class="col-md">
             <a href="{{ route('absensi.index') }}"
                 class="btn btn-outline-warning w-100 text-center text-decoration-none py-3 shadow-sm">
@@ -36,7 +30,6 @@
                 <p class="mb-0">Total Absensi</p>
             </a>
         </div>
-        <!-- Total Sponsor -->
         <div class="col-md">
             <a href="{{ route('sponsor.index') }}"
                 class="btn btn-outline-danger w-100 text-center text-decoration-none py-3 shadow-sm">
@@ -45,7 +38,6 @@
                 <p class="mb-0">Total Sponsor</p>
             </a>
         </div>
-        <!-- Catatan -->
         <div class="col-md">
             <a href="{{ route('catatan.index') }}"
                 class="btn btn-outline-info w-100 text-center text-decoration-none py-3 shadow-sm">
@@ -55,8 +47,6 @@
             </a>
         </div>
     </div>
-
-    <!-- Daftar kegiatan terbaru -->
     <div class="card shadow-sm">
         <div class="card-header bg-light text-center">
             <h4 class="mb-0">Kegiatan Terbaru</h4>

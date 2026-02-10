@@ -5,7 +5,6 @@
         <h1>Tambah Kegiatan</h1>
         <a href="{{ route('kegiatan.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
-
     <div class="card">
         <div class="card-body">
             <form action="{{ route('kegiatan.store') }}" method="POST">

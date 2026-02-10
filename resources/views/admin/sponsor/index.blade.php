@@ -5,11 +5,9 @@
         <h1>Sponsor</h1>
         <a href="{{ route('sponsor.create') }}" class="btn btn-primary">Tambah Sponsor</a>
     </div>
-
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
     <div class="card">
         <div class="card-body">
             <table id="example" class="table table-striped table-bordered text-center">

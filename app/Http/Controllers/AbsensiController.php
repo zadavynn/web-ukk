@@ -43,10 +43,6 @@ class AbsensiController extends Controller
             ->where('kelas', $request->kelas)
             ->exists();
 
-        if ($exists) {
-            return redirect()->back()->with('error', 'Kelas ini sudah mengisi absensi untuk kegiatan tersebut.')->withInput();
-        }
-
         DB::table('absensis')->insert([
             'kegiatan' => $request->kegiatan,
             'kelas' => $request->kelas,
@@ -86,10 +82,6 @@ class AbsensiController extends Controller
             ->where('kelas', $request->kelas)
             ->where('id', '!=', $id)
             ->exists();
-
-        if ($exists) {
-            return redirect()->back()->with('error', 'Data absensi untuk kelas dan kegiatan tersebut sudah ada.')->withInput();
-        }
 
         DB::table('absensis')->where('id', $id)->update([
             'kegiatan' => $request->kegiatan,
