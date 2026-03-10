@@ -11,19 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Buat tabel
-        Schema::create('catatans', function (Blueprint $table) {
-
-            // Primary key
+        Schema::create('test', function (Blueprint $table) {
             $table->id();
-
-            // Nama kegiatan
-            $table->text('kegiatan');
-
-            // Isi catatan
-            $table->text('catatan');
-
-            // Timestamp
             $table->timestamps();
         });
     }
@@ -33,7 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Hapus tabel
-        Schema::dropIfExists('catatans');
+        Schema::dropIfExists('test');
     }
 };

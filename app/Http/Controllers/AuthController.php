@@ -11,25 +11,29 @@ class AuthController extends Controller
 {
     public function index()
     {
-        // Get kegiatan yang belum selesai
+        // Ambil kegiatan
         $kegiatans = DB::table('kegiatans')
-            ->where('status', '!=', 'selesai')
-            ->orderBy('tanggal', 'asc')
+            ->where('status', '!=', 'selesai') // Filter status
+            ->orderBy('tanggal', 'asc') // Urut tanggal
             ->get();
 
-        // Get all panitia
+        // Ambil panitia
         $panitias = DB::table('panitias')->get();
 
-        // Get all sponsors
+        // Ambil sponsor
         $sponsors = DB::table('sponsors')->get();
 
+        // Kirim data
         return view('user.index', compact('kegiatans', 'panitias', 'sponsors'));
     }
 
     public function login()
     {
+        // Halaman login
         return view('user.login');
     }
+
+    // Data admin
     private function getUser(): array
     {
         return [
@@ -37,24 +41,34 @@ class AuthController extends Controller
             'password' => '$2y$12$/4Ftk2cnlROzFHvpUS1yQOp7yN2YJLR.5F8pCWbMEoEnzY7j6VEx2', // password: admin123
         ];
     }
+
     public function loginProses(Request $request)
     {
+        // Validasi login
         $request->validate([
             'username' => 'required',
             'password' => 'required',
         ]);
 
+        // Ambil input
         $auth = $request->only('username', 'password');
 
+        // Ambil user
         $user = $this->getUser();
+
+        // Cek login
         if (
             $user['username'] === $auth['username'] &&
             Hash::check($auth['password'], $user['password'])
         ) {
+            // Simpan session
             Session::put('user', $user);
+
+            // Redirect admin
             return redirect()->route('admin.dashboard');
         }
 
+        // Login gagal
         return back()->withErrors(['username' => 'Username atau password salah!']);
     }
 }

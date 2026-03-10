@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class AbsensiController extends Controller
 {
+    // Tampil absensi
     public function index()
     {
         $absensis = DB::table('absensis')->get();
@@ -14,9 +15,10 @@ class AbsensiController extends Controller
         return view('admin.absensi.index', compact('absensis'));
     }
 
+    // Form tambah
     public function create()
     {
-        // list kelas
+        // List kelas
         $kelasList = [
             'X RPL',
             'X TKJ',
@@ -29,20 +31,17 @@ class AbsensiController extends Controller
         return view('admin.absensi.create', compact('kelasList'));
     }
 
+    // Simpan absensi
     public function store(Request $request)
     {
+        // Validasi input
         $request->validate([
             'kegiatan' => 'required|string',
             'kelas' => 'required|string',
             'jumlah_hadir' => 'required|integer|min:0',
         ]);
 
-        // Cek apakah kelas tersebut sudah absen pada kegiatan itu
-        $exists = DB::table('absensis')
-            ->where('kegiatan', $request->kegiatan)
-            ->where('kelas', $request->kelas)
-            ->exists();
-
+        // Insert data
         DB::table('absensis')->insert([
             'kegiatan' => $request->kegiatan,
             'kelas' => $request->kelas,
@@ -52,10 +51,13 @@ class AbsensiController extends Controller
         return redirect()->route('absensi.index')->with('success', 'Absensi siswa berhasil ditambahkan.');
     }
 
+    // Form edit
     public function edit($id)
     {
+        // Ambil data
         $absensi = DB::table('absensis')->where('id', $id)->first();
 
+        // List kelas
         $kelasList = [
             'X RPL',
             'X TKJ',
@@ -68,21 +70,17 @@ class AbsensiController extends Controller
         return view('admin.absensi.edit', compact('absensi', 'kelasList'));
     }
 
+    // Update absensi
     public function update(Request $request, $id)
     {
+        // Validasi input
         $request->validate([
             'kegiatan' => 'required|string',
             'kelas' => 'required|string',
             'jumlah_hadir' => 'required|integer|min:0',
         ]);
 
-        // Cek apabila update menyebabkan duplikat
-        $exists = DB::table('absensis')
-            ->where('kegiatan', $request->kegiatan)
-            ->where('kelas', $request->kelas)
-            ->where('id', '!=', $id)
-            ->exists();
-
+        // Update data
         DB::table('absensis')->where('id', $id)->update([
             'kegiatan' => $request->kegiatan,
             'kelas' => $request->kelas,
@@ -92,8 +90,10 @@ class AbsensiController extends Controller
         return redirect()->route('absensi.index')->with('success', 'Absensi siswa berhasil diperbarui.');
     }
 
+    // Hapus absensi
     public function destroy($id)
     {
+        // Delete data
         DB::table('absensis')->where('id', $id)->delete();
 
         return redirect()->route('absensi.index')->with('success', 'Absensi berhasil dihapus.');

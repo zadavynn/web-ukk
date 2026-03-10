@@ -11,11 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Buat tabel
         Schema::create('absensis', function (Blueprint $table) {
+
+            // Primary key
             $table->id();
+
+            // Nama kegiatan
             $table->string('kegiatan');
+
+            // Nama kelas
             $table->string('kelas');
+
+            // Jumlah hadir
             $table->integer('jumlah_hadir');
+
+            // Timestamp
             $table->timestamps();
         });
     }
@@ -25,6 +36,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Hapus tabel
         Schema::dropIfExists('absensis');
     }
 };

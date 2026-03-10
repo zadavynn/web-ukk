@@ -9,21 +9,23 @@ class AdminController extends Controller
 {
     public function index()
     {
+        // Cek session
         if (!session()->has('user')) {
             return response('<h1 style="text-align:center; margin-top:100px;">Mohon maaf,🙏 yang anda tuju tidak dapat diakses😉</h1>');
         }
 
-        // Get statistics
+        // Hitung data
         $totalKegiatan = DB::table('kegiatans')->count();
         $totalPanitia = DB::table('panitias')->count();
         $totalPeserta = DB::table('absensis')->count();
         $totalSponsor = DB::table('sponsors')->count();
         $totalCatatan = DB::table('catatans')->count();
 
+        // Ambil kegiatan
         $latestKegiatans = DB::table('kegiatans')
-            ->orderByRaw("status = 'selesai'") // belum selesai dulu
-            ->orderBy('tanggal', 'desc')
-            ->take(3)
+            ->orderByRaw("status = 'selesai'") // Urut status
+            ->orderBy('tanggal', 'desc') // Urut tanggal
+            ->take(3) // Batasi data
             ->get();
 
 
@@ -36,12 +38,13 @@ class AdminController extends Controller
             'latestKegiatans'
         ));
     }
+
     public function logout(Request $request)
     {
-        // hapus semua session
+        // Hapus session
         $request->session()->flush();
 
-        // arahkan balik ke halaman login
-        return redirect()->route('home'); // ganti sesuai route login admin kamu
+        // Redirect login
+        return redirect()->route('home');
     }
 }

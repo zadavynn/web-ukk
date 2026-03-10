@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($absensis as $key => $absensi)
+                    @foreach ($absensis as $key => $absensi)
                         <tr>
                             <td>{{ Str::title(strtolower($absensi->kegiatan)) }}</td>
                             <td>
@@ -51,11 +51,7 @@
                                 </form>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5" class="text-center">Belum ada data absensi.</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
         </div>

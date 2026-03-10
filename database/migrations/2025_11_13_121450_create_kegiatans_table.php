@@ -11,12 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Buat tabel
         Schema::create('kegiatans', function (Blueprint $table) {
+
+            // Primary key
             $table->id();
+
+            // Nama kegiatan
             $table->string('nama');
+
+            // Tanggal kegiatan
             $table->date('tanggal');
+
+            // Lokasi kegiatan
             $table->string('lokasi');
+
+            // Status kegiatan
             $table->enum('status', ['belum_selesai', 'selesai'])->default('belum_selesai');
+
+            // Timestamp
             $table->timestamps();
         });
     }
@@ -26,6 +39,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Hapus tabel
         Schema::dropIfExists('kegiatans');
     }
 };

@@ -9,19 +9,25 @@ class PanitiaController extends Controller
 {
     public function index()
     {
+        // Ambil panitia
         $panitias = DB::table('panitias')->get();
 
+        // Tampil halaman
         return view('admin.panitia.index', compact('panitias'));
     }
 
     public function create()
     {
+        // Ambil kegiatan
         $kegiatans = DB::table('kegiatans')->get();
+
+        // Form tambah
         return view('admin.panitia.create', compact('kegiatans'));
     }
 
     public function store(Request $request)
     {
+        // Validasi input
         $request->validate([
             'nama' => 'required|string|max:255',
             'kelas' => 'required|in:X RPL,X TKJ,XI RPL,XI TKJ,XII RPL,XII TKJ',
@@ -30,6 +36,7 @@ class PanitiaController extends Controller
             'quotes' => 'required|string',
         ]);
 
+        // Simpan panitia
         DB::table('panitias')->insert([
             'nama' => $request->nama,
             'kelas' => $request->kelas,
@@ -38,17 +45,22 @@ class PanitiaController extends Controller
             'quotes' => $request->quotes,
         ]);
 
+        // Redirect index
         return redirect()->route('panitia.index')->with('success', 'Panitia berhasil dibuat.');
     }
 
     public function edit($id)
     {
+        // Ambil data
         $panitia = DB::table('panitias')->where('id', $id)->first();
+
+        // Form edit
         return view('admin.panitia.edit', compact('panitia'));
     }
 
     public function update(Request $request, $id)
     {
+        // Validasi input
         $request->validate([
             'nama' => 'required|string|max:255',
             'kelas' => 'required|in:X RPL,X TKJ,XI RPL,XI TKJ,XII RPL,XII TKJ',
@@ -57,6 +69,7 @@ class PanitiaController extends Controller
             'quotes' => 'required|string',
         ]);
 
+        // Update panitia
         DB::table('panitias')->where('id', $id)->update([
             'nama' => $request->nama,
             'kelas' => $request->kelas,
@@ -65,12 +78,16 @@ class PanitiaController extends Controller
             'quotes' => $request->quotes,
         ]);
 
+        // Redirect index
         return redirect()->route('panitia.index')->with('success', 'Panitia berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
+        // Hapus panitia
         DB::table('panitias')->where('id', $id)->delete();
+
+        // Redirect index
         return redirect()->route('panitia.index')->with('success', 'Panitia berhasil dihapus.');
     }
 }
