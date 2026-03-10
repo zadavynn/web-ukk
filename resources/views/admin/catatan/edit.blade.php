@@ -5,7 +5,7 @@
         <h1>Edit Catatan</h1>
         <a href="{{ route('catatan.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
             <form action="{{ route('catatan.update', $catatan->id) }}" method="POST">
                 @csrf

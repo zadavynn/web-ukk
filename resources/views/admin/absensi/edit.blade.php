@@ -5,7 +5,7 @@
         <h1>Edit Absensi Siswa</h1>
         <a href="{{ route('absensi.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
             <form action="{{ route('absensi.update', $absensi->id) }}" method="POST">
                 @csrf

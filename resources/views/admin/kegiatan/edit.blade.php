@@ -5,7 +5,7 @@
         <h1>Edit Kegiatan</h1>
         <a href="{{ route('kegiatan.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
             <form action="{{ route('kegiatan.update', $kegiatan->id) }}" method="POST">
                 @csrf

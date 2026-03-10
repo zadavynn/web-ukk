@@ -52,7 +52,7 @@ class AuthController extends Controller
             Hash::check($auth['password'], $user['password'])
         ) {
             Session::put('user', $user);
-            return redirect()->route('admin');
+            return redirect()->route('admin.dashboard');
         }
 
         return back()->withErrors(['username' => 'Username atau password salah!']);

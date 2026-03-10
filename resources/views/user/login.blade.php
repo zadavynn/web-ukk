@@ -1,7 +1,7 @@
 @extends('layouts.app-user')
 @section('title', 'Login')
 @section('content')
-    <div class="container py-5">
+    <div class="container py-4">
         <div class="col-12 col-sm-10 col-md-8 col-lg-5 m-auto my-5 py-5">
             <div class="card shadow border-0 rounded-4 mb-5">
                 <div class="card-header bg-secondary bg-gradient text-white text-center rounded-top-4">
@@ -16,7 +16,7 @@
                             <div>{{ $errors->first() }}</div>
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('proses') }}">
+                    <form method="POST" action="{{ route('login.proses') }}">
                         @csrf
                         <div class="mb-3">
                             <label for="username" class="form-label fw-semibold">Username</label>

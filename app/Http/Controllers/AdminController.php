@@ -10,7 +10,7 @@ class AdminController extends Controller
     public function index()
     {
         if (!session()->has('user')) {
-            return response('<h1 style="text-align:center; margin-top:100px;">Mohon maaf yang anda tuju tidak ditemukan</h1>');
+            return response('<h1 style="text-align:center; margin-top:100px;">Mohon maaf,🙏 yang anda tuju tidak dapat diakses😉</h1>');
         }
 
         // Get statistics
@@ -42,6 +42,6 @@ class AdminController extends Controller
         $request->session()->flush();
 
         // arahkan balik ke halaman login
-        return redirect()->route('user'); // ganti sesuai route login admin kamu
+        return redirect()->route('home'); // ganti sesuai route login admin kamu
     }
 }

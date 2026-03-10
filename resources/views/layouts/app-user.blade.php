@@ -11,7 +11,7 @@
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar sticky-top bg-body-secondary ps-3">
         <div class="container-fluid">
-            <a class="navbar-brand fw-semibold" href="{{ route('user') }}">SMK Syafi'i Akrom</a>
+            <a class="navbar-brand fw-semibold" href="{{ route('home') }}">SMK Syafi'i Akrom</a>
         </div>
     </nav>
     <main class="flex-grow-1">
@@ -29,7 +29,7 @@
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold">Menu Cepat</h5>
                     <ul class="list-unstyled small">
-                        <li><a href="{{ route('user') }}" class="text-light text-decoration-none">Kegiatan</a></li>
+                        <li><a href="{{ route('home') }}" class="text-light text-decoration-none">Kegiatan</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-4">

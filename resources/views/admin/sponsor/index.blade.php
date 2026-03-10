@@ -2,13 +2,13 @@
 @section('title', 'Sponsor')
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Sponsor</h1>
+        <h1 class="ms-3">Sponsor</h1>
         <a href="{{ route('sponsor.create') }}" class="btn btn-primary">Tambah Sponsor</a>
     </div>
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
             <table id="example" class="table table-striped table-bordered text-center">
                 <thead>
@@ -22,9 +22,9 @@
                 <tbody>
                     @foreach ($sponsors as $sponsor)
                         <tr>
-                            <td>{{ $sponsor->nama_sponsor }}</td>
+                            <td>{{ Str::title(strtolower($sponsor->nama_sponsor)) }}</td>
                             <td>{{ $sponsor->email_sponsor }}</td>
-                            <td>{{ $sponsor->kegiatan_sponsor }}</td>
+                            <td>{{ Str::title(strtolower($sponsor->kegiatan_sponsor)) }}</td>
                             <td>
                                 <a href="{{ route('sponsor.edit', $sponsor->id) }}" class="btn btn-sm btn-warning"
                                     aria-label="Edit"><i class="bi bi-pencil"></i></a>

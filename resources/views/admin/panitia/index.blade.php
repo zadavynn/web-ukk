@@ -2,13 +2,13 @@
 @section('title', 'Panitia')
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Panitia</h1>
+        <h1 class="ms-3">Panitia</h1>
         <a href="{{ route('panitia.create') }}" class="btn btn-primary">Tambah Panitia</a>
     </div>
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
             <table id="example" class="table table-striped table-bordered text-center">
                 <thead>
@@ -24,7 +24,7 @@
                 <tbody>
                     @foreach ($panitias as $panitia)
                         <tr>
-                            <td>{{ $panitia->nama }}</td>
+                            <td>{{ Str::title(strtolower($panitia->nama)) }}</td>
                             <td>
                                 @if ($panitia->jabatan == 'ketua')
                                     <span class="badge bg-primary">Ketua</span>
@@ -40,7 +40,7 @@
                             </td>
                             <td>{{ $panitia->sosmed }}</td>
                             <td>{{ $panitia->telepon }}</td>
-                            <td>{{ $panitia->quotes }}</td>
+                            <td>{{ ucfirst(strtolower($panitia->quotes)) }}</td>
                             <td>
                                 <a href="{{ route('panitia.edit', $panitia->id) }}" class="btn btn-sm btn-warning"
                                     aria-label="Edit"><i class="bi bi-pencil"></i></a>

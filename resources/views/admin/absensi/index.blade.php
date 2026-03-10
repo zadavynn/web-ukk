@@ -3,15 +3,15 @@
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Data Absensi Siswa</h1>
+        <h1 class="ms-3">Data Absensi Siswa</h1>
         <a href="{{ route('absensi.create') }}" class="btn btn-primary">
-            <i class="bi bi-plus-lg"></i> Tambah Absensi
+            Tambah Absensi
         </a>
     </div>
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    <div class="card shadow-sm">
+    <div class="card shadow-sm mb-4">
         <div class="card-body">
             <table id="example" class="table table-striped table-bordered text-center">
                 <thead>
@@ -25,7 +25,7 @@
                 <tbody>
                     @forelse ($absensis as $key => $absensi)
                         <tr>
-                            <td>{{ $absensi->kegiatan }}</td>
+                            <td>{{ Str::title(strtolower($absensi->kegiatan)) }}</td>
                             <td>
                                 <span class="badge bg-primary">{{ $absensi->kelas }}</span>
                             </td>

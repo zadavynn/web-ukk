@@ -5,7 +5,7 @@
         <h1>Tambah Panitia</h1>
         <a href="{{ route('panitia.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
             <form action="{{ route('panitia.store') }}" method="POST">
                 @csrf
@@ -19,8 +19,8 @@
                         <option value="">Pilih Jabatan</option>
                         <option value="ketua">Ketua</option>
                         <option value="wakil_ketua">Wakil Ketua</option>
-                        <option value="bendahara">Bendahara</option>
                         <option value="sekretaris">Sekretaris</option>
+                        <option value="bendahara">Bendahara</option>
                         <option value="anggota">Anggota</option>
                     </select>
                 </div>

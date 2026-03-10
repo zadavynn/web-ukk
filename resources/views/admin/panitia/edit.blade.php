@@ -5,7 +5,7 @@
         <h1>Edit Panitia</h1>
         <a href="{{ route('panitia.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
             <form action="{{ route('panitia.update', $panitia->id) }}" method="POST">
                 @csrf
@@ -13,16 +13,6 @@
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama Panitia</label>
                     <input type="text" class="form-control" id="nama" name="nama" value="{{ $panitia->nama }}"
-                        required>
-                </div>
-                <div class="mb-3">
-                    <label for="sosmed" class="form-label">Sosmed</label>
-                    <input type="text" class="form-control" id="sosmed" name="sosmed" value="{{ $panitia->sosmed }}"
-                        required>
-                </div>
-                <div class="mb-3">
-                    <label for="telepon" class="form-label">Telepon</label>
-                    <input type="text" class="form-control" id="telepon" name="telepon" value="{{ $panitia->telepon }}"
                         required>
                 </div>
                 <div class="mb-3">
@@ -38,6 +28,16 @@
                         </option>
                         <option value="anggota" {{ $panitia->jabatan == 'anggota' ? 'selected' : '' }}>Anggota</option>
                     </select>
+                </div>
+                <div class="mb-3">
+                    <label for="sosmed" class="form-label">Sosmed</label>
+                    <input type="text" class="form-control" id="sosmed" name="sosmed" value="{{ $panitia->sosmed }}"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="telepon" class="form-label">Telepon</label>
+                    <input type="text" class="form-control" id="telepon" name="telepon" value="{{ $panitia->telepon }}"
+                        required>
                 </div>
                 <div class="mb-3">
                     <label for="quotes" class="form-label">Quotes</label>

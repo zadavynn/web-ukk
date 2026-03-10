@@ -2,13 +2,13 @@
 @section('title', 'Catatan')
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Catatan</h1>
+        <h1 class="ms-3">Catatan</h1>
         <a href="{{ route('catatan.create') }}" class="btn btn-primary">Tambah Catatan</a>
     </div>
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
             <table id="example" class="table table-striped table-bordered text-center">
                 <thead>
@@ -21,8 +21,8 @@
                 <tbody>
                     @foreach ($catatans as $catatan)
                         <tr>
-                            <td>{{ $catatan->kegiatan }}</td>
-                            <td>{{ Str::limit($catatan->catatan, 50) }}</td>
+                            <td>{{ Str::title(strtolower($catatan->kegiatan)) }}</td>
+                            <td>{{ Str::limit($catatan->catatan, 20) }}</td>
                             <td>
                                 <a href="{{ route('catatan.edit', $catatan->id) }}" class="btn btn-sm btn-warning"
                                     aria-label="Edit"><i class="bi bi-pencil"></i></a>

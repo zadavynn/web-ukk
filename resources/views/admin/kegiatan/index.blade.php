@@ -2,13 +2,13 @@
 @section('title', 'Kegiatan Admin')
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Kegiatan</h1>
+        <h1 class="ms-3">Kegiatan</h1>
         <a href="{{ route('kegiatan.create') }}" class="btn btn-primary">Tambah Kegiatan</a>
     </div>
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
             <table id="example" class="table table-striped table-bordered text-center">
                 <thead>
@@ -23,7 +23,7 @@
                 <tbody>
                     @foreach ($kegiatans as $kegiatan)
                         <tr>
-                            <td>{{ $kegiatan->nama }}</td>
+                            <td>{{ Str::title(strtolower($kegiatan->nama)) }}</td>
                             <td>
                                 @if ($kegiatan->status == 'selesai')
                                     <span class="badge bg-success">Selesai</span>
@@ -32,7 +32,7 @@
                                 @endif
                             </td>
                             <td>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</td>
-                            <td>{{ $kegiatan->lokasi }}</td>
+                            <td>{{ Str::title(strtolower($kegiatan->lokasi)) }}</td>
                             <td>
                                 <a href="{{ route('kegiatan.edit', $kegiatan->id) }}" class="btn btn-sm btn-warning"
                                     aria-label="Edit"><i class="bi bi-pencil"></i></a>

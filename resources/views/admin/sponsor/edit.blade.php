@@ -5,7 +5,7 @@
         <h1>Edit Sponsor</h1>
         <a href="{{ route('sponsor.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
             <form action="{{ route('sponsor.update', $sponsor->id) }}" method="POST">
                 @csrf
