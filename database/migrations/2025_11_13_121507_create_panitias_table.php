@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->enum('jabatan', ['ketua', 'wakil_ketua', 'bendahara', 'sekretaris', 'anggota'])->default('anggota');
-            $table->string('sosmed');
+            $table->enum('kelas', ['X RPL', 'X TKJ', 'XI RPL', 'XI TKJ', 'XII RPL', 'XII TKJ']);
             $table->string('telepon');
             $table->string('quotes');
             $table->timestamps();

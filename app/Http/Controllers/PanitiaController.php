@@ -24,7 +24,7 @@ class PanitiaController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'sosmed' => 'required',
+            'kelas' => 'required|in:X RPL,X TKJ,XI RPL,XI TKJ,XII RPL,XII TKJ',
             'telepon' => 'required|string|max:20',
             'jabatan' => 'required|in:ketua,wakil_ketua,bendahara,sekretaris,anggota',
             'quotes' => 'required|string',
@@ -32,7 +32,7 @@ class PanitiaController extends Controller
 
         DB::table('panitias')->insert([
             'nama' => $request->nama,
-            'sosmed' => $request->sosmed,
+            'kelas' => $request->kelas,
             'telepon' => $request->telepon,
             'jabatan' => $request->jabatan,
             'quotes' => $request->quotes,
@@ -51,7 +51,7 @@ class PanitiaController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'sosmed' => 'required',
+            'kelas' => 'required|in:X RPL,X TKJ,XI RPL,XI TKJ,XII RPL,XII TKJ',
             'telepon' => 'required|string|max:20',
             'jabatan' => 'required|in:ketua,wakil_ketua,bendahara,sekretaris,anggota',
             'quotes' => 'required|string',
@@ -59,7 +59,7 @@ class PanitiaController extends Controller
 
         DB::table('panitias')->where('id', $id)->update([
             'nama' => $request->nama,
-            'sosmed' => $request->sosmed,
+            'kelas' => $request->kelas,
             'telepon' => $request->telepon,
             'jabatan' => $request->jabatan,
             'quotes' => $request->quotes,

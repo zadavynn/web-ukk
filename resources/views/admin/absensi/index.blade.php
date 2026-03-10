@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="ms-3">Data Absensi Siswa</h1>
+        <h1 class="ms-3">Absensi Siswa</h1>
         <a href="{{ route('absensi.create') }}" class="btn btn-primary">
             Tambah Absensi
         </a>
@@ -33,6 +33,10 @@
                                 <span class="badge bg-secondary">{{ $absensi->jumlah_hadir }} siswa</span>
                             </td>
                             <td>
+                                <button class="btn btn-sm btn-info" data-bs-toggle="modal"
+                                    data-bs-target="#modalAbsensi{{ $absensi->id }}">
+                                    <i class="bi bi-eye"></i>
+                                </button>
                                 <a href="{{ route('absensi.edit', $absensi->id) }}" class="btn btn-sm btn-warning"
                                     aria-label="Edit">
                                     <i class="bi bi-pencil"></i>
@@ -56,4 +60,33 @@
             </table>
         </div>
     </div>
+    <!-- Modal Detail Absensi -->
+    @foreach ($absensis as $absensi)
+        <div class="modal fade" id="modalAbsensi{{ $absensi->id }}" tabindex="-1"
+            aria-labelledby="modalAbsensiLabel{{ $absensi->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title" id="modalAbsensiLabel{{ $absensi->id }}">Detail Absensi</h5>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Kegiatan</th>
+                                <td>{{ Str::title(strtolower($absensi->kegiatan)) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kelas</th>
+                                <td><span class="badge bg-primary">{{ $absensi->kelas }}</span></td>
+                            </tr>
+                            <tr>
+                                <th>Jumlah Hadir</th>
+                                <td><span class="badge bg-secondary">{{ $absensi->jumlah_hadir }} siswa</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection

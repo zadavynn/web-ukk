@@ -13,7 +13,6 @@
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-dark bg-dark fixed-top ps-3">
         <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
-        </div>
     </nav>
     <aside id="sidebar"
         class="offcanvas-md offcanvas-start col-md-3 col-lg-2 bg-dark text-white vh-100 pt-5 d-flex flex-column position-fixed">
@@ -65,8 +64,8 @@
             </div>
         </div>
     </main>
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
-        &copy; 2025 Admin SMK Syafi'i Akrom
+    <footer class="bg-dark text-white text-end pe-3 py-3 mt-auto">
+        &copy; 2025 Admin SMK Syafi'i Akrom. All rights reserved.
     </footer>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>

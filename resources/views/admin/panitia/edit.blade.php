@@ -30,14 +30,21 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="sosmed" class="form-label">Sosmed</label>
-                    <input type="text" class="form-control" id="sosmed" name="sosmed" value="{{ $panitia->sosmed }}"
-                        required>
+                    <label for="kelas" class="form-label">Kelas</label>
+                    <select class="form-select" id="kelas" name="kelas" required>
+                        <option value="">Pilih Kelas</option>
+                        <option value="X RPL" {{ $panitia->kelas == 'X RPL' ? 'selected' : '' }}>X RPL</option>
+                        <option value="X TKJ" {{ $panitia->kelas == 'X TKJ' ? 'selected' : '' }}>X TKJ</option>
+                        <option value="XI RPL" {{ $panitia->kelas == 'XI RPL' ? 'selected' : '' }}>XI RPL</option>
+                        <option value="XI TKJ" {{ $panitia->kelas == 'XI TKJ' ? 'selected' : '' }}>XI TKJ</option>
+                        <option value="XII RPL" {{ $panitia->kelas == 'XII RPL' ? 'selected' : '' }}>XII RPL</option>
+                        <option value="XII TKJ" {{ $panitia->kelas == 'XII TKJ' ? 'selected' : '' }}>XII TKJ</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="telepon" class="form-label">Telepon</label>
-                    <input type="text" class="form-control" id="telepon" name="telepon" value="{{ $panitia->telepon }}"
-                        required>
+                    <input type="text" class="form-control" id="telepon" name="telepon"
+                        value="{{ $panitia->telepon }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="quotes" class="form-label">Quotes</label>

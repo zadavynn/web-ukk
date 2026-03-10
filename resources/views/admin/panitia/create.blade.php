@@ -25,8 +25,16 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="sosmed" class="form-label">Sosmed</label>
-                    <input type="text" class="form-control" id="sosmed" name="sosmed" required>
+                    <label for="kelas" class="form-label">Kelas</label>
+                    <select class="form-select" id="kelas" name="kelas" required>
+                        <option value="">Pilih Kelas</option>
+                        <option value="X RPL">X RPL</option>
+                        <option value="X TKJ">X TKJ</option>
+                        <option value="XI RPL">XI RPL</option>
+                        <option value="XI TKJ">XI TKJ</option>
+                        <option value="XII RPL">XII RPL</option>
+                        <option value="XII TKJ">XII TKJ</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="telepon" class="form-label">Telepon</label>

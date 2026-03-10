@@ -22,8 +22,12 @@
                     @foreach ($catatans as $catatan)
                         <tr>
                             <td>{{ Str::title(strtolower($catatan->kegiatan)) }}</td>
-                            <td>{{ Str::limit($catatan->catatan, 20) }}</td>
+                            <td>{{ Str::limit($catatan->catatan, 30) }}</td>
                             <td>
+                                <button class="btn btn-sm btn-info" data-bs-toggle="modal"
+                                    data-bs-target="#modalCatatan{{ $catatan->id }}">
+                                    <i class="bi bi-eye"></i>
+                                </button>
                                 <a href="{{ route('catatan.edit', $catatan->id) }}" class="btn btn-sm btn-warning"
                                     aria-label="Edit"><i class="bi bi-pencil"></i></a>
                                 <form action="{{ route('catatan.destroy', $catatan->id) }}" method="POST" class="d-inline">
@@ -40,4 +44,29 @@
             </table>
         </div>
     </div>
+    <!-- Modal Detail Catatan -->
+    @foreach ($catatans as $catatan)
+        <div class="modal fade" id="modalCatatan{{ $catatan->id }}" tabindex="-1"
+            aria-labelledby="modalCatatanLabel{{ $catatan->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title" id="modalCatatanLabel{{ $catatan->id }}">Detail Catatan</h5>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Kegiatan</th>
+                                <td>{{ Str::title(strtolower($catatan->kegiatan)) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Catatan</th>
+                                <td>{{ $catatan->catatan }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection

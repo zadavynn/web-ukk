@@ -34,6 +34,10 @@
                             <td>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</td>
                             <td>{{ Str::title(strtolower($kegiatan->lokasi)) }}</td>
                             <td>
+                                <button class="btn btn-sm btn-info" data-bs-toggle="modal"
+                                    data-bs-target="#modalKegiatan{{ $kegiatan->id }}">
+                                    <i class="bi bi-eye"></i>
+                                </button>
                                 <a href="{{ route('kegiatan.edit', $kegiatan->id) }}" class="btn btn-sm btn-warning"
                                     aria-label="Edit"><i class="bi bi-pencil"></i></a>
                                 @if ($kegiatan->status == 'belum_selesai')
@@ -60,4 +64,43 @@
             </table>
         </div>
     </div>
+    <!-- Modal Detail Kegiatan -->
+    @foreach ($kegiatans as $kegiatan)
+        <div class="modal fade" id="modalKegiatan{{ $kegiatan->id }}" tabindex="-1"
+            aria-labelledby="modalKegiatanLabel{{ $kegiatan->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title" id="modalKegiatanLabel{{ $kegiatan->id }}">Detail Kegiatan</h5>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Nama</th>
+                                <td>{{ Str::title(strtolower($kegiatan->nama)) }}</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>
+                                    @if ($kegiatan->status == 'selesai')
+                                        <span class="badge bg-success">Selesai</span>
+                                    @else
+                                        <span class="badge bg-primary">Belum Selesai</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Tanggal</th>
+                                <td>{{ \Carbon\Carbon::parse($kegiatan->tanggal)->format('d/m/Y') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Lokasi</th>
+                                <td>{{ Str::title(strtolower($kegiatan->lokasi)) }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection
