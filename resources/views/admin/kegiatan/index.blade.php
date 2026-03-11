@@ -55,9 +55,9 @@
                                 @endif
                                 <form action="{{ route('kegiatan.destroy', $kegiatan->id) }}" method="POST"
                                     class="d-inline">
-                                    // token keamanan
+                                    {{-- token keamanan --}}
                                     @csrf
-                                    // method delete
+                                    {{-- method delete --}}
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')"
