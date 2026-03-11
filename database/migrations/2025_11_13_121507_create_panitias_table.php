@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Buat tabel
         Schema::create('panitias', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->enum('jabatan', ['ketua', 'wakil_ketua', 'bendahara', 'sekretaris', 'anggota'])->default('anggota');
-            $table->enum('kelas', ['X RPL', 'X TKJ', 'XI RPL', 'XI TKJ', 'XII RPL', 'XII TKJ']);
+            $table->string('jabatan');
+            $table->string('kelas');
             $table->string('telepon');
             $table->string('quotes');
             $table->timestamps();

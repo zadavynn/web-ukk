@@ -17,10 +17,24 @@ class PanitiaController extends Controller
 
     public function create()
     {
-        // Ambil kegiatan
-        $kegiatans = DB::table('kegiatans')->get();
+        $kelasList = [
+            'X RPL',
+            'X TKJ',
+            'XI RPL',
+            'XI TKJ',
+            'XII RPL',
+            'XII TKJ'
+        ];
 
-        return view('admin.panitia.create', compact('kegiatans'));
+        $jabatanList = [
+            'ketua',
+            'wakil_ketua',
+            'sekretaris',
+            'bendahara',
+            'anggota'
+        ];
+
+        return view('admin.panitia.create', compact('kelasList', 'jabatanList'));
     }
 
     public function store(Request $request)
@@ -28,9 +42,9 @@ class PanitiaController extends Controller
         // Validasi input
         $request->validate([
             'nama' => 'required|string|max:255',
-            'kelas' => 'required|in:X RPL,X TKJ,XI RPL,XI TKJ,XII RPL,XII TKJ',
-            'telepon' => 'required|string|max:20',
-            'jabatan' => 'required|in:ketua,wakil_ketua,bendahara,sekretaris,anggota',
+            'kelas' => 'required|string',
+            'telepon' => 'required|string|max:15',
+            'jabatan' => 'required|string',
             'quotes' => 'required|string',
         ]);
 
@@ -51,6 +65,23 @@ class PanitiaController extends Controller
         // Ambil data
         $panitia = DB::table('panitias')->where('id', $id)->first();
 
+        $kelasList = [
+            'X RPL',
+            'X TKJ',
+            'XI RPL',
+            'XI TKJ',
+            'XII RPL',
+            'XII TKJ'
+        ];
+
+        $jabatanList = [
+            'ketua',
+            'wakil_ketua',
+            'sekretaris',
+            'bendahara',
+            'anggota'
+        ];
+
         return view('admin.panitia.edit', compact('panitia'));
     }
 
@@ -59,9 +90,9 @@ class PanitiaController extends Controller
         // Validasi input
         $request->validate([
             'nama' => 'required|string|max:255',
-            'kelas' => 'required|in:X RPL,X TKJ,XI RPL,XI TKJ,XII RPL,XII TKJ',
-            'telepon' => 'required|string|max:20',
-            'jabatan' => 'required|in:ketua,wakil_ketua,bendahara,sekretaris,anggota',
+            'kelas' => 'required|string',
+            'telepon' => 'required|string|max:15',
+            'jabatan' => 'required|string',
             'quotes' => 'required|string',
         ]);
 
