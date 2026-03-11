@@ -1,10 +1,12 @@
 @extends('layouts.app-admin')
 @section('title', 'Catatan')
+
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="ms-3">Catatan</h1>
         <a href="{{ route('catatan.create') }}" class="btn btn-primary">Tambah Catatan</a>
     </div>
+    {{-- notifikasi sukses --}}
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -19,6 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- perulangan data --}}
                     @foreach ($catatans as $catatan)
                         <tr>
                             <td>{{ Str::title(strtolower($catatan->kegiatan)) }}</td>
@@ -29,13 +32,19 @@
                                     <i class="bi bi-eye"></i>
                                 </button>
                                 <a href="{{ route('catatan.edit', $catatan->id) }}" class="btn btn-sm btn-warning"
-                                    aria-label="Edit"><i class="bi bi-pencil"></i></a>
+                                    aria-label="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
                                 <form action="{{ route('catatan.destroy', $catatan->id) }}" method="POST" class="d-inline">
+                                    {{-- token keamanan --}}
                                     @csrf
+                                    {{-- method delete --}}
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus catatan ini?')"
-                                        aria-label="Hapus"><i class="bi bi-trash"></i></button>
+                                        aria-label="Hapus">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -44,7 +53,7 @@
             </table>
         </div>
     </div>
-    <!-- Modal Detail Catatan -->
+
     @foreach ($catatans as $catatan)
         <div class="modal fade" id="modalCatatan{{ $catatan->id }}" tabindex="-1"
             aria-labelledby="modalCatatanLabel{{ $catatan->id }}" aria-hidden="true">

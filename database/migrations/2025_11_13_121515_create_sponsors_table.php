@@ -13,20 +13,10 @@ return new class extends Migration
     {
         // Buat tabel
         Schema::create('sponsors', function (Blueprint $table) {
-
-            // Primary key
             $table->id();
-
-            // Nama sponsor
             $table->string('nama_sponsor');
-
-            // Email sponsor
             $table->string('email_sponsor')->unique();
-
-            // Kegiatan sponsor
             $table->string('kegiatan_sponsor')->nullable();
-
-            // Timestamp
             $table->timestamps();
         });
     }

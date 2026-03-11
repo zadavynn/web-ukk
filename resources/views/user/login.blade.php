@@ -5,9 +5,7 @@
         <div class="col-12 col-sm-10 col-md-8 col-lg-5 m-auto my-5 py-5">
             <div class="card shadow border-0 rounded-4 mb-5">
                 <div class="card-header bg-secondary bg-gradient text-white text-center rounded-top-4">
-                    <h4 class="mb-0 fw-semibold">
-                        <i class="bi bi-person-circle me-2"></i> Login
-                    </h4>
+                    <h4 class="mb-0 fw-semibold"><i class="bi bi-person-circle me-2"></i> Login</h4>
                 </div>
                 <div class="card-body p-4">
                     @if ($errors->any())

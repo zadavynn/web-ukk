@@ -1,10 +1,12 @@
 @extends('layouts.app-admin')
 @section('title', 'Kegiatan Admin')
+
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="ms-3">Kegiatan</h1>
         <a href="{{ route('kegiatan.create') }}" class="btn btn-primary">Tambah Kegiatan</a>
     </div>
+    {{-- notifikasi sukses --}}
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -21,6 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- perulangan data --}}
                     @foreach ($kegiatans as $kegiatan)
                         <tr>
                             <td>{{ Str::title(strtolower($kegiatan->nama)) }}</td>
@@ -45,17 +48,22 @@
                                         class="d-inline">
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-success"
-                                            onclick="return confirm('Apakah Anda yakin ingin menyelesaikan kegiatan ini?')"><i
-                                                class="bi bi-check-circle"></i></button>
+                                            onclick="return confirm('Apakah Anda yakin ingin menyelesaikan kegiatan ini?')">
+                                            <i class="bi bi-check-circle"></i>
+                                        </button>
                                     </form>
                                 @endif
                                 <form action="{{ route('kegiatan.destroy', $kegiatan->id) }}" method="POST"
                                     class="d-inline">
+                                    // token keamanan
                                     @csrf
+                                    // method delete
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')"
-                                        aria-label="Hapus"><i class="bi bi-trash"></i></button>
+                                        aria-label="Hapus">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -64,7 +72,7 @@
             </table>
         </div>
     </div>
-    <!-- Modal Detail Kegiatan -->
+
     @foreach ($kegiatans as $kegiatan)
         <div class="modal fade" id="modalKegiatan{{ $kegiatan->id }}" tabindex="-1"
             aria-labelledby="modalKegiatanLabel{{ $kegiatan->id }}" aria-hidden="true">

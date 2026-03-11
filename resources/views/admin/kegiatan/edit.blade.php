@@ -1,5 +1,6 @@
 @extends('layouts.app-admin')
 @section('title', 'Edit Kegiatan')
+
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Edit Kegiatan</h1>
@@ -8,7 +9,9 @@
     <div class="card mb-4">
         <div class="card-body">
             <form action="{{ route('kegiatan.update', $kegiatan->id) }}" method="POST">
+                {{-- token keamanan --}}
                 @csrf
+                {{-- method update --}}
                 @method('PUT')
                 <div class="mb-3">
                     <label for="nama_kegiatan" class="form-label">Nama Kegiatan</label>

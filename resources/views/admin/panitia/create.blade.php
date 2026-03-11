@@ -1,5 +1,6 @@
 @extends('layouts.app-admin')
 @section('title', 'Tambah Panitia')
+
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Tambah Panitia</h1>
@@ -8,6 +9,7 @@
     <div class="card mb-4">
         <div class="card-body">
             <form action="{{ route('panitia.store') }}" method="POST">
+                {{-- token keamanan --}}
                 @csrf
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama Panitia</label>

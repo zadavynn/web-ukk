@@ -8,6 +8,7 @@
             Tambah Absensi
         </a>
     </div>
+    {{-- notifikasi sukses --}}
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -23,6 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- perulangan data --}}
                     @foreach ($absensis as $key => $absensi)
                         <tr>
                             <td>{{ Str::title(strtolower($absensi->kegiatan)) }}</td>
@@ -41,8 +43,12 @@
                                     aria-label="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </a>
+
+                                {{-- form hapus --}}
                                 <form action="{{ route('absensi.destroy', $absensi->id) }}" method="POST" class="d-inline">
+                                    {{-- token keamanan --}}
                                     @csrf
+                                    {{-- method delete --}}
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"
                                         onclick="return confirm('Yakin ingin menghapus data ini?')" aria-label="Hapus">
@@ -56,7 +62,7 @@
             </table>
         </div>
     </div>
-    <!-- Modal Detail Absensi -->
+
     @foreach ($absensis as $absensi)
         <div class="modal fade" id="modalAbsensi{{ $absensi->id }}" tabindex="-1"
             aria-labelledby="modalAbsensiLabel{{ $absensi->id }}" aria-hidden="true">

@@ -1,10 +1,12 @@
 @extends('layouts.app-admin')
 @section('title', 'Sponsor')
+
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="ms-3">Sponsor</h1>
         <a href="{{ route('sponsor.create') }}" class="btn btn-primary">Tambah Sponsor</a>
     </div>
+    {{-- notifikasi --}}
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -20,6 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- perulangan data sponsor --}}
                     @foreach ($sponsors as $sponsor)
                         <tr>
                             <td>{{ Str::title(strtolower($sponsor->nama_sponsor)) }}</td>
@@ -33,7 +36,9 @@
                                 <a href="{{ route('sponsor.edit', $sponsor->id) }}" class="btn btn-sm btn-warning"
                                     aria-label="Edit"><i class="bi bi-pencil"></i></a>
                                 <form action="{{ route('sponsor.destroy', $sponsor->id) }}" method="POST" class="d-inline">
+                                    {{-- token keamanan --}}
                                     @csrf
+                                    {{-- method delete --}}
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus sponsor ini?')"
@@ -46,7 +51,7 @@
             </table>
         </div>
     </div>
-    <!-- Modal Detail Sponsor -->
+
     @foreach ($sponsors as $sponsor)
         <div class="modal fade" id="modalSponsor{{ $sponsor->id }}" tabindex="-1"
             aria-labelledby="modalSponsorLabel{{ $sponsor->id }}" aria-hidden="true">

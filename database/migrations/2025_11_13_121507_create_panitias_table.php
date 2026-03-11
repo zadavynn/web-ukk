@@ -13,26 +13,12 @@ return new class extends Migration
     {
         // Buat tabel
         Schema::create('panitias', function (Blueprint $table) {
-
-            // Primary key
             $table->id();
-
-            // Nama panitia
             $table->string('nama');
-
-            // Jabatan panitia
             $table->enum('jabatan', ['ketua', 'wakil_ketua', 'bendahara', 'sekretaris', 'anggota'])->default('anggota');
-
-            // Kelas panitia
             $table->enum('kelas', ['X RPL', 'X TKJ', 'XI RPL', 'XI TKJ', 'XII RPL', 'XII TKJ']);
-
-            // Nomor telepon
             $table->string('telepon');
-
-            // Quotes panitia
             $table->string('quotes');
-
-            // Timestamp
             $table->timestamps();
         });
     }

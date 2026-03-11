@@ -12,7 +12,6 @@ class SponsorController extends Controller
         // Ambil sponsor
         $sponsors = DB::table('sponsors')->get();
 
-        // Tampil halaman
         return view('admin.sponsor.index', compact('sponsors'));
     }
 
@@ -21,7 +20,6 @@ class SponsorController extends Controller
         // Ambil kegiatan
         $kegiatans = DB::table('kegiatans')->get();
 
-        // Form tambah
         return view('admin.sponsor.create', compact('kegiatans'));
     }
 
@@ -41,7 +39,6 @@ class SponsorController extends Controller
             'kegiatan_sponsor' => $request->kegiatan_sponsor,
         ]);
 
-        // Redirect index
         return redirect()->route('sponsor.index')->with('success', 'Sponsor berhasil dibuat.');
     }
 
@@ -50,7 +47,6 @@ class SponsorController extends Controller
         // Ambil data
         $sponsor = DB::table('sponsors')->where('id', $id)->first();
 
-        // Form edit
         return view('admin.sponsor.edit', compact('sponsor'));
     }
 
@@ -70,7 +66,6 @@ class SponsorController extends Controller
             'kegiatan_sponsor' => $request->kegiatan_sponsor,
         ]);
 
-        // Redirect index
         return redirect()->route('sponsor.index')->with('success', 'Sponsor berhasil diperbarui.');
     }
 
@@ -79,7 +74,6 @@ class SponsorController extends Controller
         // Hapus sponsor
         DB::table('sponsors')->where('id', $id)->delete();
 
-        // Redirect index
         return redirect()->route('sponsor.index')->with('success', 'Sponsor berhasil dihapus.');
     }
 }

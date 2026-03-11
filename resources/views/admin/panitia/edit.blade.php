@@ -1,5 +1,6 @@
 @extends('layouts.app-admin')
 @section('title', 'Edit Panitia')
+
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Edit Panitia</h1>
@@ -8,7 +9,9 @@
     <div class="card mb-4">
         <div class="card-body">
             <form action="{{ route('panitia.update', $panitia->id) }}" method="POST">
+                {{-- token keamanan --}}
                 @csrf
+                {{-- method put --}}
                 @method('PUT')
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama Panitia</label>

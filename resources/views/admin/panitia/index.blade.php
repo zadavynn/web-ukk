@@ -1,10 +1,12 @@
 @extends('layouts.app-admin')
 @section('title', 'Panitia')
+
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="ms-3">Panitia</h1>
         <a href="{{ route('panitia.create') }}" class="btn btn-primary">Tambah Panitia</a>
     </div>
+    {{-- notifikasi --}}
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -22,10 +24,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- perulangan data panitia --}}
                     @foreach ($panitias as $panitia)
                         <tr>
                             <td>{{ Str::title(strtolower($panitia->nama)) }}</td>
                             <td>
+
                                 @if ($panitia->jabatan == 'ketua')
                                     <span class="badge bg-primary">Ketua</span>
                                 @elseif($panitia->jabatan == 'wakil_ketua')
@@ -51,7 +55,9 @@
                                 <a href="{{ route('panitia.edit', $panitia->id) }}" class="btn btn-sm btn-warning"
                                     aria-label="Edit"><i class="bi bi-pencil"></i></a>
                                 <form action="{{ route('panitia.destroy', $panitia->id) }}" method="POST" class="d-inline">
+                                    {{-- token keamanan --}}
                                     @csrf
+                                    {{-- method delete --}}
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus panitia ini?')"
@@ -64,7 +70,7 @@
             </table>
         </div>
     </div>
-    <!-- Modal Detail Panitia -->
+
     @foreach ($panitias as $panitia)
         <div class="modal fade" id="modalPanitia{{ $panitia->id }}" tabindex="-1"
             aria-labelledby="modalPanitiaLabel{{ $panitia->id }}" aria-hidden="true">

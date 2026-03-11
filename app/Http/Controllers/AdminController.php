@@ -41,10 +41,8 @@ class AdminController extends Controller
 
     public function logout(Request $request)
     {
-        // Hapus session
         $request->session()->flush();
 
-        // Redirect login
         return redirect()->route('home');
     }
 }

@@ -1,13 +1,17 @@
 @extends('layouts.app-admin')
 @section('title', 'Tambah Absensi')
+
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Tambah Absensi Siswa</h1>
         <a href="{{ route('absensi.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
+
     <div class="card mb-4">
         <div class="card-body">
+            {{-- form tambah absensi --}}
             <form action="{{ route('absensi.store') }}" method="POST">
+                {{-- token keamanan --}}
                 @csrf
                 <div class="mb-3">
                     <label class="form-label">Kegiatan</label>
@@ -17,6 +21,7 @@
                     <label class="form-label">Kelas</label>
                     <select name="kelas" class="form-select" required>
                         <option value="">Pilih Kelas</option>
+                        {{-- perulangan kelas --}}
                         @foreach ($kelasList as $kelas)
                             <option value="{{ $kelas }}">{{ $kelas }}</option>
                         @endforeach

@@ -12,13 +12,11 @@ class CatatanController extends Controller
         // Ambil catatan
         $catatans = DB::table('catatans')->get();
 
-        // Tampil halaman
         return view('admin.catatan.index', compact('catatans'));
     }
 
     public function create()
     {
-        // Form tambah
         return view('admin.catatan.create');
     }
 
@@ -36,7 +34,6 @@ class CatatanController extends Controller
             'catatan' => $request->catatan,
         ]);
 
-        // Redirect index
         return redirect()->route('catatan.index')->with('success', 'Catatan berhasil dibuat.');
     }
 
@@ -45,7 +42,6 @@ class CatatanController extends Controller
         // Ambil data
         $catatan = DB::table('catatans')->where('id', $id)->first();
 
-        // Form edit
         return view('admin.catatan.edit', compact('catatan'));
     }
 
@@ -63,7 +59,6 @@ class CatatanController extends Controller
             'catatan' => $request->catatan,
         ]);
 
-        // Redirect index
         return redirect()->route('catatan.index')->with('success', 'Catatan berhasil diperbarui.');
     }
 
@@ -72,7 +67,6 @@ class CatatanController extends Controller
         // Hapus data
         DB::table('catatans')->where('id', $id)->delete();
 
-        // Redirect index
         return redirect()->route('catatan.index')->with('success', 'Catatan berhasil dihapus.');
     }
 }

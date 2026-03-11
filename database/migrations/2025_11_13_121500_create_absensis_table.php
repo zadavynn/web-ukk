@@ -13,20 +13,10 @@ return new class extends Migration
     {
         // Buat tabel
         Schema::create('absensis', function (Blueprint $table) {
-
-            // Primary key
             $table->id();
-
-            // Nama kegiatan
             $table->string('kegiatan');
-
-            // Nama kelas
             $table->string('kelas');
-
-            // Jumlah hadir
             $table->integer('jumlah_hadir');
-
-            // Timestamp
             $table->timestamps();
         });
     }

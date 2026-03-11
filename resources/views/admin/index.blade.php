@@ -1,5 +1,6 @@
 @extends('layouts.app-admin')
 @section('title', 'Dashboard Admin')
+
 @section('content')
     <div class="text-center mb-3">
         <h1 class="fw-semibold text-capitalize">Selamat Datang Admin</h1>
@@ -63,6 +64,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- perulangan kegiatan --}}
                         @forelse($latestKegiatans as $kegiatan)
                             <tr>
                                 <td>{{ Str::title(strtolower($kegiatan->nama)) }}</td>

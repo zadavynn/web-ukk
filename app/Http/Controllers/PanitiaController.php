@@ -12,7 +12,6 @@ class PanitiaController extends Controller
         // Ambil panitia
         $panitias = DB::table('panitias')->get();
 
-        // Tampil halaman
         return view('admin.panitia.index', compact('panitias'));
     }
 
@@ -21,7 +20,6 @@ class PanitiaController extends Controller
         // Ambil kegiatan
         $kegiatans = DB::table('kegiatans')->get();
 
-        // Form tambah
         return view('admin.panitia.create', compact('kegiatans'));
     }
 
@@ -45,7 +43,6 @@ class PanitiaController extends Controller
             'quotes' => $request->quotes,
         ]);
 
-        // Redirect index
         return redirect()->route('panitia.index')->with('success', 'Panitia berhasil dibuat.');
     }
 
@@ -54,7 +51,6 @@ class PanitiaController extends Controller
         // Ambil data
         $panitia = DB::table('panitias')->where('id', $id)->first();
 
-        // Form edit
         return view('admin.panitia.edit', compact('panitia'));
     }
 
@@ -78,7 +74,6 @@ class PanitiaController extends Controller
             'quotes' => $request->quotes,
         ]);
 
-        // Redirect index
         return redirect()->route('panitia.index')->with('success', 'Panitia berhasil diperbarui.');
     }
 
@@ -87,7 +82,6 @@ class PanitiaController extends Controller
         // Hapus panitia
         DB::table('panitias')->where('id', $id)->delete();
 
-        // Redirect index
         return redirect()->route('panitia.index')->with('success', 'Panitia berhasil dihapus.');
     }
 }

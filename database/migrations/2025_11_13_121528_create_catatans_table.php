@@ -13,17 +13,9 @@ return new class extends Migration
     {
         // Buat tabel
         Schema::create('catatans', function (Blueprint $table) {
-
-            // Primary key
             $table->id();
-
-            // Nama kegiatan
             $table->text('kegiatan');
-
-            // Isi catatan
             $table->text('catatan');
-
-            // Timestamp
             $table->timestamps();
         });
     }

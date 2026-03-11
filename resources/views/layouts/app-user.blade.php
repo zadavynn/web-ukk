@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar sticky-top bg-body-secondary ps-3">
         <div class="container-fluid">
@@ -22,9 +24,7 @@
             <div class="row text-center text-md-start">
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold">SMK Syafi'i Akrom</h5>
-                    <p class="small">
-                        Portal resmi informasi kegiatan sekolah.
-                    </p>
+                    <p class="small">Portal resmi informasi kegiatan sekolah.</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <h5 class="fw-bold">Menu Cepat</h5>
@@ -77,4 +77,5 @@
         }
     </script>
 </body>
+
 </html>

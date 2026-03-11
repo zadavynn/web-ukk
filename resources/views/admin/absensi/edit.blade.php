@@ -1,14 +1,18 @@
 @extends('layouts.app-admin')
 @section('title', 'Edit Absensi')
+
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Edit Absensi Siswa</h1>
         <a href="{{ route('absensi.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
+
     <div class="card mb-4">
         <div class="card-body">
             <form action="{{ route('absensi.update', $absensi->id) }}" method="POST">
+                {{-- token keamanan --}}
                 @csrf
+                {{-- method update --}}
                 @method('PUT')
                 <div class="mb-3">
                     <label class="form-label">Kegiatan</label>
@@ -17,6 +21,7 @@
                 <div class="mb-3">
                     <label class="form-label">Kelas</label>
                     <select name="kelas" class="form-select" required>
+                        {{-- perulangan kelas --}}
                         @foreach ($kelasList as $kelas)
                             <option value="{{ $kelas }}" {{ $kelas == $absensi->kelas ? 'selected' : '' }}>
                                 {{ $kelas }}

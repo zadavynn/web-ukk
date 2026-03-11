@@ -18,7 +18,6 @@ class AbsensiController extends Controller
     // Form tambah
     public function create()
     {
-        // List kelas
         $kelasList = [
             'X RPL',
             'X TKJ',
@@ -57,7 +56,6 @@ class AbsensiController extends Controller
         // Ambil data
         $absensi = DB::table('absensis')->where('id', $id)->first();
 
-        // List kelas
         $kelasList = [
             'X RPL',
             'X TKJ',
@@ -93,7 +91,6 @@ class AbsensiController extends Controller
     // Hapus absensi
     public function destroy($id)
     {
-        // Delete data
         DB::table('absensis')->where('id', $id)->delete();
 
         return redirect()->route('absensi.index')->with('success', 'Absensi berhasil dihapus.');

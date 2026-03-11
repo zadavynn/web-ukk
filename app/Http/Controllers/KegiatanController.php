@@ -12,13 +12,11 @@ class KegiatanController extends Controller
         // Ambil kegiatan
         $kegiatans = DB::table('kegiatans')->get();
 
-        // Tampil halaman
         return view('admin.kegiatan.index', compact('kegiatans'));
     }
 
     public function create()
     {
-        // Form tambah
         return view('admin.kegiatan.create');
     }
 
@@ -39,7 +37,6 @@ class KegiatanController extends Controller
             'status' => 'belum_selesai',
         ]);
 
-        // Redirect index
         return redirect()->route('kegiatan.index')->with('success', 'Kegiatan berhasil dibuat.');
     }
 
@@ -48,7 +45,6 @@ class KegiatanController extends Controller
         // Ambil data
         $kegiatan = DB::table('kegiatans')->where('id', $id)->first();
 
-        // Form edit
         return view('admin.kegiatan.edit', compact('kegiatan'));
     }
 
@@ -68,7 +64,6 @@ class KegiatanController extends Controller
             'lokasi' => $request->lokasi_kegiatan,
         ]);
 
-        // Redirect index
         return redirect()->route('kegiatan.index')->with('success', 'Kegiatan berhasil diperbarui.');
     }
 
@@ -77,7 +72,6 @@ class KegiatanController extends Controller
         // Hapus kegiatan
         DB::table('kegiatans')->where('id', $id)->delete();
 
-        // Redirect index
         return redirect()->route('kegiatan.index')->with('success', 'Kegiatan berhasil dihapus.');
     }
 
@@ -86,7 +80,6 @@ class KegiatanController extends Controller
         // Ubah status
         DB::table('kegiatans')->where('id', $id)->update(['status' => 'selesai']);
 
-        // Redirect index
         return redirect()->route('kegiatan.index')->with('success', 'Kegiatan berhasil diselesaikan.');
     }
 }

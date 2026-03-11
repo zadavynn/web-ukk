@@ -23,13 +23,11 @@ class AuthController extends Controller
         // Ambil sponsor
         $sponsors = DB::table('sponsors')->get();
 
-        // Kirim data
         return view('user.index', compact('kegiatans', 'panitias', 'sponsors'));
     }
 
     public function login()
     {
-        // Halaman login
         return view('user.login');
     }
 
@@ -61,7 +59,6 @@ class AuthController extends Controller
             $user['username'] === $auth['username'] &&
             Hash::check($auth['password'], $user['password'])
         ) {
-            // Simpan session
             Session::put('user', $user);
 
             // Redirect admin
